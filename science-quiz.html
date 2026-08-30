@@ -1108,13 +1108,256 @@ function restartSet(){
 }
 
 
+<script>
+
+/* =========================
+   QUESTION BANK
+========================= */
+
+let currentSet = 0;
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+
+/* =========================
+   START SET
+========================= */
+
+function startSet(setNumber){
+
+    currentSet = setNumber;
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("setSelection").style.display = "none";
+    document.getElementById("result").style.display = "none";
+    document.getElementById("quiz").style.display = "block";
+
+    loadQuestion();
+}
+
+
+/* =========================
+   LOAD QUESTION
+========================= */
+
+function loadQuestion(){
+
+    answered = false;
+
+    const q = questionSets[currentSet][currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        "Question " + (currentQuestion + 1) + " of 10";
+
+    document.getElementById("question").textContent = q.q;
+
+    const options = document.getElementById("options");
+
+    options.innerHTML = "";
+
+    q.o.forEach(function(option,index){
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent =
+            String.fromCharCode(65 + index) + ") " + option;
+
+        button.onclick = function(){
+
+            checkAnswer(button,index);
+
+        };
+
+        options.appendChild(button);
+
+    });
+
+    document.getElementById("nextBtn").style.display = "none";
+}
+
+
+/* =========================
+   CHECK ANSWER
+========================= */
+
+function checkAnswer(button,index){
+
+    if(answered) return;
+
+    answered = true;
+
+    const correct =
+        questionSets[currentSet][currentQuestion].a;
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+    if(index === correct){
+
+        button.classList.add("correct");
+
+        score++;
+
+    }else{
+
+        button.classList.add("wrong");
+
+        buttons[correct].classList.add("correct");
+
+    }
+
+    document.getElementById("nextBtn").style.display = "block";
+}
+
+
+/* =========================
+   NEXT QUESTION
+========================= */
+
+function nextQuestion(){
+
+    currentQuestion++;
+
+    if(currentQuestion < 10){
+
+        loadQuestion();
+
+    }else{
+
+        showResult();
+
+    }
+
+}
+
+
+/* =========================
+   SHOW RESULT
+========================= */
+
+function showResult(){
+
+    document.getElementById("quiz").style.display = "none";
+
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("score").textContent =
+        "Your Score: " + score + " / 10";
+
+    let message;
+
+    if(score >= 8){
+
+        message =
+            "🏆 Excellent! Your Science preparation is very good.";
+
+    }else if(score >= 5){
+
+        message =
+            "👍 Good! Keep practising for better results.";
+
+    }else{
+
+        message =
+            "📚 Keep practising. You can improve your score.";
+
+    }
+
+    document.getElementById("message").textContent = message;
+}
+
+
+/* =========================
+   RESTART
+========================= */
+
+function restartSet(){
+
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("result").style.display = "none";
+    document.getElementById("quiz").style.display = "block";
+
+    loadQuestion();
+}
+
+
 /* =========================
    BACK TO SETS
 ========================= */
 
 function backToSets(){
 
-    document.getElementById("result").style.display =
-        "none";
+    document.getElementById("result").style.display = "none";
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("setSelection").style.display = "block";
 
-    document.getElement
+}
+
+
+/* =========================
+   LANGUAGE
+========================= */
+
+function setLanguage(language){
+
+    document.querySelectorAll("[data-en]").forEach(function(element){
+
+        if(language === "bn"){
+
+            element.textContent =
+                element.getAttribute("data-bn");
+
+        }else{
+
+            element.textContent =
+                element.getAttribute("data-en");
+
+        }
+
+    });
+
+    const bnBtn = document.getElementById("bnBtn");
+    const enBtn = document.getElementById("enBtn");
+
+    if(language === "bn"){
+
+        bnBtn.style.background = "#2563eb";
+        bnBtn.style.color = "white";
+
+        enBtn.style.background = "white";
+        enBtn.style.color = "#2563eb";
+
+    }else{
+
+        enBtn.style.background = "#2563eb";
+        enBtn.style.color = "white";
+
+        bnBtn.style.background = "white";
+        bnBtn.style.color = "#2563eb";
+
+    }
+
+    localStorage.setItem("siteLanguage",language);
+}
+
+
+/* =========================
+   LOAD SAVED LANGUAGE
+========================= */
+
+window.addEventListener("DOMContentLoaded",function(){
+
+    const savedLanguage =
+        localStorage.getItem("siteLanguage") || "en";
+
+    setLanguage(savedLanguage);
+
+});
+
+</script>
