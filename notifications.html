@@ -416,6 +416,50 @@ footer{
     <p>© 2026 Angshu Math Zone</p>
     <p>Learn Mathematics • Prepare Better • Achieve More</p>
 </footer>
+<script>
+function setLanguage(language) {
 
+    document.querySelectorAll("[data-en]").forEach(function(element) {
+
+        if (language === "bn") {
+            element.textContent = element.getAttribute("data-bn");
+        } else {
+            element.textContent = element.getAttribute("data-en");
+        }
+
+    });
+
+    const bnBtn = document.getElementById("bnBtn");
+    const enBtn = document.getElementById("enBtn");
+
+    if (language === "bn") {
+
+        bnBtn.style.background = "#2563eb";
+        bnBtn.style.color = "white";
+
+        enBtn.style.background = "white";
+        enBtn.style.color = "#2563eb";
+
+    } else {
+
+        enBtn.style.background = "#2563eb";
+        enBtn.style.color = "white";
+
+        bnBtn.style.background = "white";
+        bnBtn.style.color = "#2563eb";
+    }
+
+    localStorage.setItem("siteLanguage", language);
+}
+
+window.addEventListener("DOMContentLoaded", function() {
+
+    const savedLanguage =
+        localStorage.getItem("siteLanguage") || "en";
+
+    setLanguage(savedLanguage);
+
+});
+                </script>
 </body>
 </html>
