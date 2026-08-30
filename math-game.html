@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Math Calculation Game - Angshu Math Zone</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6fb;color:#172033}
+header{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;text-align:center;padding:26px 15px}
+header h1{margin:0 0 7px;font-size:28px} header p{margin:0;font-size:14px}
+main{max-width:700px;margin:auto;padding:20px 14px}
+.back{display:inline-block;margin-bottom:15px;color:#2563eb;text-decoration:none;font-weight:bold}
+.card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 5px 18px rgba(0,0,0,.1)}
+h2{text-align:center;color:#1e3a8a;margin:0 0 16px}
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+.mode{border:1px solid #d8deea;background:#f8fafc;padding:11px;border-radius:9px;font-weight:bold;cursor:pointer}
+.mode.active{background:#2563eb;color:#fff}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.stat{background:#eef4ff;border-radius:10px;padding:12px;text-align:center}
+.stat small{display:block;color:#64748b;margin-bottom:4px}.stat b{font-size:22px}
+.question{background:#f8fafc;border-radius:12px;padding:25px;text-align:center}
+#question{font-size:34px;font-weight:bold;margin-bottom:18px}
+input{width:100%;padding:14px;font-size:22px;text-align:center;border:2px solid #cbd5e1;border-radius:9px}
+button.main{width:100%;border:0;border-radius:9px;padding:13px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:12px;background:#16a34a;color:#fff}
+button.restart{background:#7c3aed}
+#message{text-align:center;min-height:25px;margin-top:10px;font-weight:bold}
+.info{text-align:center;color:#64748b;font-size:13px}
+@media(max-width:480px){header h1{font-size:24px}#question{font-size:29px}}
+</style>
+</head>
+<body>
+<header>
+<h1>🎮 Math Calculation Game</h1>
+<p>Test your calculation speed with Angshu Math Zone</p>
+</header>
+<main>
+<a class="back" href="index.html">← Back to Home</a>
+<div class="card">
+<h2>⚡ Fast Math Challenge</h2>
+<div class="modes">
+<button class="mode active" data-level="easy">Easy</button>
+<button class="mode" data-level="medium">Medium</button>
+<button class="mode" data-level="hard">Hard</button>
+</div>
+<div class="stats">
+<div class="stat"><small>⏱️ Time</small><b id="time">60</b></div>
+<div class="stat"><small>🏆 Score</small><b id="score">0</b></div>
+<div class="stat"><small>❌ Wrong</small><b id="wrong">0</b></div>
+</div>
+<div class="question">
+<div id="question">Press Start!</div>
+<input id="answer" type="number" inputmode="numeric" placeholder="Your answer" disabled>
+</div>
+<button class="main" id="start">▶ Start Game</button>
+<button class="main restart" id="restart" style="display:none">🔄 Play Again</button>
+<div id="message"></div>
+<p class="info">You have 60 seconds. Press Enter after each answer.</p>
+</div>
+</main>
+<script>
+let level="easy",score=0,wrong=0,time=60,correctAnswer=0,timer=null,running=false;
+const $=id=>document.getElementById(id);
+document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>{
+ if(running)return;
+ document.querySelectorAll(".mode").forEach(x=>x.classList.remove("active"));
+ b.classList.add("active"); level=b.dataset.level;
+});
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+function newQuestion(){
+ let a,b,op;
+ if(level==="easy"){a=rnd(1,30);b=rnd(1,30);op=rnd(0,1)?"+":"-"}
+ else if(level==="medium"){a=rnd(5,60);b=rnd(2,30);op=["+","-","×"][rnd(0,2)]}
+ else{a=rnd(10,100);b=rnd(2,50);op=["+","-","×","÷"][rnd(0,3)]}
+ if(op==="-"&&b>a)[a,b]=[b,a];
+ if(op==="÷"){correctAnswer=b;a=a*b}
+ else if(op==="+")correctAnswer=a+b;
+ else if(op==="-")correctAnswer=a-b;
+ else correctAnswer=a*b;
+ $("question").textContent=`${a} ${op} ${b} = ?`;
+ $("answer").value=""; $("answer").focus();
+}
+function startGame(){
+ clearInterval(timer); score=0;wrong=0;time=60;running=true;
+ $("score").textContent=score;$("wrong").textContent=wrong;$("time").textContent=time;
+ $("message").textContent="";$("start").style.display="none";$("restart").style.display="none";
+ $("answer").disabled=false;newQuestion();
+ timer=setInterval(()=>{time--;$("time").textContent=time;if(time<=0)endGame()},1000);
+}
+function check(){
+ if(!running||$("answer").value==="")return;
+ if(Number($("answer").value)===correctAnswer){score++;$("message").textContent="✅ Correct!"}
+ else{wrong++;$("message").textContent="❌ Wrong!"}
+ $("score").textContent=score;$("wrong").textContent=wrong;newQuestion();
+}
+function endGame(){
+ clearInterval(timer);running=false;$("answer").disabled=true;
+ $("question").textContent=`Game Over! 🎉 Score: ${score}`;
+ $("message").textContent=`Correct: ${score} | Wrong: ${wrong}`;
+ $("restart").style.display="block";
+}
+$("start").onclick=startGame;$("restart").onclick=startGame;
+$("answer").addEventListener("keydown",e=>{if(e.key==="Enter")check()});
+</script>
+</body>
+</html>
