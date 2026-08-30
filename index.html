@@ -556,6 +556,26 @@ function setLanguage(language) {
 
     });
 
+    const bnBtn = document.getElementById("bnBtn");
+    const enBtn = document.getElementById("enBtn");
+
+    if (language === "bn") {
+
+        bnBtn.style.background = "#2563eb";
+        bnBtn.style.color = "white";
+
+        enBtn.style.background = "white";
+        enBtn.style.color = "#2563eb";
+
+    } else {
+
+        enBtn.style.background = "#2563eb";
+        enBtn.style.color = "white";
+
+        bnBtn.style.background = "white";
+        bnBtn.style.color = "#2563eb";
+    }
+
     localStorage.setItem("siteLanguage", language);
 }
 
