@@ -478,22 +478,30 @@ function sendReview() {
         <p>© 2026 Angshu Math Zone</p>
         <p>Learn Mathematics • Prepare Better • Achieve More</p>
     </footer>
-<!-- LANGUAGE SWITCHER -->
-<div style="
-    text-align:right;
-    padding:10px 15px;
-    background:white;
-    border-bottom:1px solid #ddd;
-">
-    <button onclick="setLanguage('bn')" id="bnBtn"
-        style="padding:7px 12px;border:1px solid #2563eb;border-radius:6px;background:#2563eb;color:white;">
-        বাংলা
-    </button>
+<script>
+function setLanguage(language) {
 
-    <button onclick="setLanguage('en')" id="enBtn"
-        style="padding:7px 12px;border:1px solid #2563eb;border-radius:6px;background:white;color:#2563eb;">
-        English
-    </button>
-</div>
+    document.querySelectorAll("[data-en]").forEach(function(element) {
+
+        if (language === "bn") {
+            element.textContent = element.getAttribute("data-bn");
+        } else {
+            element.textContent = element.getAttribute("data-en");
+        }
+
+    });
+
+    localStorage.setItem("siteLanguage", language);
+}
+
+window.addEventListener("DOMContentLoaded", function() {
+
+    const savedLanguage =
+        localStorage.getItem("siteLanguage") || "en";
+
+    setLanguage(savedLanguage);
+
+});
+</script>
 </body>
 </html>
