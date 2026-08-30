@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Railway Science Quiz - Angshu Math Zone</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f3f6fb;
+    color:#222;
+}
+
+header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    text-align:center;
+    padding:28px 15px;
+}
+
+header h1{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+header p{
+    font-size:14px;
+}
+
+.language{
+    background:white;
+    text-align:right;
+    padding:10px 15px;
+    border-bottom:1px solid #ddd;
+}
+
+.language button{
+    padding:7px 14px;
+    border:1px solid #2563eb;
+    border-radius:6px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+#bnBtn{
+    background:white;
+    color:#2563eb;
+}
+
+#enBtn{
+    background:#2563eb;
+    color:white;
+}
+
+.container{
+    max-width:750px;
+    margin:auto;
+    padding:25px 15px;
+}
+
+.quiz-box{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+.quiz-title{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:20px;
+}
+
+.set-buttons{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.set-button{
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.set-button:hover{
+    opacity:.85;
+}
+
+.question-number{
+    color:#666;
+    margin-bottom:12px;
+    font-weight:bold;
+}
+
+.question{
+    font-size:19px;
+    font-weight:bold;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+.option{
+    display:block;
+    width:100%;
+    padding:13px;
+    margin:10px 0;
+    border:1px solid #ddd;
+    border-radius:8px;
+    background:#f8fafc;
+    text-align:left;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#e0ecff;
+}
+
+.correct{
+    background:#dcfce7 !important;
+    border-color:#16a34a;
+}
+
+.wrong{
+    background:#fee2e2 !important;
+    border-color:#dc2626;
+}
+
+.next-btn,
+.restart-btn,
+.back-btn{
+    width:100%;
+    padding:13px;
+    margin-top:15px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.back-btn{
+    background:#16a34a;
+}
+
+.score{
+    text-align:center;
+    font-size:28px;
+    color:#1e3a8a;
+    margin:20px 0;
+}
+
+#quiz,
+#result{
+    display:none;
+}
+
+#result{
+    text-align:center;
+}
+
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+    margin-top:30px;
+}
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:24px;
+    }
+
+    .quiz-box{
+        padding:20px 15px;
+    }
+
+    .question{
+        font-size:17px;
+    }
+
+    .set-buttons{
+        grid-template-columns:1fr 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LANGUAGE SWITCHER -->
+<div class="language">
+
+    <button onclick="setLanguage('bn')" id="bnBtn">
+        বাংলা
+    </button>
+
+    <button onclick="setLanguage('en')" id="enBtn">
+        English
+    </button>
+
+</div>
+
+<header>
+
+    <h1
+        data-en="🔬 Railway Science Quiz"
+        data-bn="🔬 রেলওয়ে সায়েন্স কুইজ">
+        🔬 Railway Science Quiz
+    </h1>
+
+    <p
+        data-en="Physics • Chemistry • Biology"
+        data-bn="পদার্থবিদ্যা • রসায়ন • জীববিদ্যা">
+        Physics • Chemistry • Biology
+    </p>
+
+</header>
+
+
+<div class="container">
+
+<!-- SET SELECTION -->
+
+<div class="quiz-box" id="setSelection">
+
+    <h2 class="quiz-title"
+        data-en="🚆 Select Question Set"
+        data-bn="🚆 প্রশ্নের সেট নির্বাচন করুন">
+        🚆 Select Question Set
+    </h2>
+
+    <div class="set-buttons">
+
+        <button class="set-button" onclick="startSet(0)">Set 1</button>
+        <button class="set-button" onclick="startSet(1)">Set 2</button>
+        <button class="set-button" onclick="startSet(2)">Set 3</button>
+        <button class="set-button" onclick="startSet(3)">Set 4</button>
+        <button class="set-button" onclick="startSet(4)">Set 5</button>
+        <button class="set-button" onclick="startSet(5)">Set 6</button>
+        <button class="set-button" onclick="startSet(6)">Set 7</button>
+        <button class="set-button" onclick="startSet(7)">Set 8</button>
+        <button class="set-button" onclick="startSet(8)">Set 9</button>
+        <button class="set-button" onclick="startSet(9)">Set 10</button>
+
+    </div>
+
+</div>
+
+
+<!-- QUIZ -->
+
+<div class="quiz-box" id="quiz">
+
+    <h2 class="quiz-title">
+        🔬 Railway Science Quiz
+    </h2>
+
+    <div class="question-number" id="questionNumber"></div>
+
+    <div class="question" id="question"></div>
+
+    <div id="options"></div>
+
+    <button class="next-btn"
+        id="nextBtn"
+        onclick="nextQuestion()"
+        style="display:none;">
+        Next Question →
+    </button>
+
+</div>
+
+
+<!-- RESULT -->
+
+<div class="quiz-box" id="result">
+
+    <h2 class="quiz-title"
+        data-en="🎉 Quiz Completed!"
+        data-bn="🎉 কুইজ শেষ হয়েছে!">
+        🎉 Quiz Completed!
+    </h2>
+
+    <div class="score" id="score"></div>
+
+    <p id="message"></p>
+
+    <button class="restart-btn"
+        onclick="restartSet()"
+        data-en="🔄 Play Again"
+        data-bn="🔄 আবার খেলুন">
+        🔄 Play Again
+    </button>
+
+    <button class="back-btn"
+        onclick="backToSets()"
+        data-en="📚 Choose Another Set"
+        data-bn="📚 অন্য সেট নির্বাচন করুন">
+        📚 Choose Another Set
+    </button>
+
+</div>
+
+</div>
+
+
+<footer>
+
+    <p>© 2026 Angshu Math Zone</p>
+
+    <p
+        data-en="Learn Mathematics • Prepare Better • Achieve More"
+        data-bn="গণিত শিখুন • ভালোভাবে প্রস্তুতি নিন • সফলতা অর্জন করুন">
+        Learn Mathematics • Prepare Better • Achieve More
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   QUESTION BANK
+   10 SETS × 10 QUESTIONS
+========================= */
+
+const questionSets = [
+
+/* SET 1 */
+
+[
+{
+q:"What is the SI unit of force?",
+o:["Joule","Newton","Watt","Pascal"],
+a:1
+},
+{
+q:"Which gas is most abundant in Earth's atmosphere?",
+o:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+a:1
+},
+{
+q:"Which organ purifies blood in the human body?",
+o:["Heart","Lungs","Kidney","Stomach"],
+a:2
+},
+{
+q:"What is the chemical symbol of Sodium?",
+o:["So","Na","S","Sd"],
+a:1
+},
+{
+q:"Which vitamin is produced in the skin by sunlight?",
+o:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+a:3
+},
+{
+q:"Which planet is known as the Red Planet?",
+o:["Venus","Mars","Jupiter","Mercury"],
+a:1
+},
+{
+q:"What is the boiling point of water at normal pressure?",
+o:["50°C","75°C","100°C","150°C"],
+a:2
+},
+{
+q:"Which part of a plant performs photosynthesis?",
+o:["Root","Stem","Leaf","Flower"],
+a:2
+},
+{
+q:"Which metal is liquid at room temperature?",
+o:["Iron","Copper","Mercury","Aluminium"],
+a:2
+},
+{
+q:"Which blood cells fight infections?",
+o:["Red blood cells","White blood cells","Platelets","Plasma"],
+a:1
+}
+],
+
+
+/* SET 2 */
+
+[
+{
+q:"What is the SI unit of electric current?",
+o:["Volt","Ampere","Ohm","Watt"],
+a:1
+},
+{
+q:"Which gas is necessary for respiration?",
+o:["Nitrogen","Oxygen","Hydrogen","Helium"],
+a:1
+},
+{
+q:"What is the pH value of pure water?",
+o:["5","6","7","8"],
+a:2
+},
+{
+q:"Which is the largest organ of the human body?",
+o:["Heart","Liver","Skin","Lungs"],
+a:2
+},
+{
+q:"Which planet is the largest in our Solar System?",
+o:["Earth","Saturn","Jupiter","Mars"],
+a:2
+},
+{
+q:"What is the chemical formula of water?",
+o:["CO2","H2O","O2","NaCl"],
+a:1
+},
+{
+q:"Which vitamin helps in blood clotting?",
+o:["Vitamin A","Vitamin C","Vitamin D","Vitamin K"],
+a:3
+},
+{
+q:"Which instrument measures temperature?",
+o:["Barometer","Thermometer","Ammeter","Hygrometer"],
+a:1
+},
+{
+q:"Which acid is present in vinegar?",
+o:["Citric acid","Acetic acid","Sulphuric acid","Hydrochloric acid"],
+a:1
+},
+{
+q:"Which organ pumps blood throughout the body?",
+o:["Liver","Kidney","Heart","Lung"],
+a:2
+}
+],
+
+
+/* SET 3 */
+
+[
+{
+q:"What is the SI unit of power?",
+o:["Joule","Newton","Watt","Pascal"],
+a:2
+},
+{
+q:"Which gas is used by plants during photosynthesis?",
+o:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+a:2
+},
+{
+q:"Which is the nearest star to Earth?",
+o:["Moon","Sun","Mars","Sirius"],
+a:1
+},
+{
+q:"Which mineral is important for healthy bones and teeth?",
+o:["Iron","Calcium","Sodium","Potassium"],
+a:1
+},
+{
+q:"What is the chemical symbol of Iron?",
+o:["Ir","Fe","In","I"],
+a:1
+},
+{
+q:"Which organ is mainly responsible for digestion?",
+o:["Stomach","Heart","Brain","Kidney"],
+a:0
+},
+{
+q:"What is the freezing point of water?",
+o:["0°C","10°C","50°C","100°C"],
+a:0
+},
+{
+q:"Which planet is famous for its rings?",
+o:["Mars","Venus","Saturn","Mercury"],
+a:2
+},
+{
+q:"Which part of the human body controls the nervous system?",
+o:["Heart","Brain","Liver","Kidney"],
+a:1
+},
+{
+q:"Which gas is known as laughing gas?",
+o:["Nitrogen","Nitrous oxide","Oxygen","Carbon monoxide"],
+a:1
+}
+],
+
+
+/* SET 4 */
+
+[
+{
+q:"Which device measures atmospheric pressure?",
+o:["Thermometer","Barometer","Ammeter","Voltmeter"],
+a:1
+},
+{
+q:"Which is the hardest natural substance?",
+o:["Gold","Iron","Diamond","Copper"],
+a:2
+},
+{
+q:"Which blood group is known as the universal donor?",
+o:["AB+","A+","O−","B+"],
+a:2
+},
+{
+q:"Which planet is closest to the Sun?",
+o:["Earth","Mercury","Venus","Mars"],
+a:1
+},
+{
+q:"What is the chemical formula of common salt?",
+o:["NaCl","H2O","CO2","CaCO3"],
+a:0
+},
+{
+q:"Which vitamin deficiency causes scurvy?",
+o:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+a:2
+},
+{
+q:"What is the speed of light approximately?",
+o:["3 × 10⁸ m/s","3 × 10⁶ m/s","3 × 10⁴ m/s","3 × 10² m/s"],
+a:0
+},
+{
+q:"Which organ removes waste from the blood?",
+o:["Heart","Kidney","Stomach","Brain"],
+a:1
+},
+{
+q:"Which metal is the best conductor of electricity?",
+o:["Iron","Silver","Lead","Mercury"],
+a:1
+},
+{
+q:"Which gas turns limewater milky?",
+o:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+a:2
+}
+],
+
+
+/* SET 5 */
+
+[
+{
+q:"Which force pulls objects towards Earth?",
+o:["Magnetic force","Gravitational force","Frictional force","Electrical force"],
+a:1
+},
+{
+q:"Which organ helps humans breathe?",
+o:["Lungs","Kidney","Stomach","Liver"],
+a:0
+},
+{
+q:"What is the chemical symbol of Gold?",
+o:["Ag","Au","Gd","Go"],
+a:1
+},
+{
+q:"Which planet is known as the Morning Star?",
+o:["Mars","Venus","Jupiter","Saturn"],
+a:1
+},
+{
+q:"Which vitamin is important for eyesight?",
+o:["Vitamin A","Vitamin C","Vitamin D","Vitamin K"],
+a:0
+},
+{
+q:"Which instrument measures electric current?",
+o:["Voltmeter","Ammeter","Barometer","Thermometer"],
+a:1
+},
+{
+q:"What is the main component of natural gas?",
+o:["Methane","Oxygen","Nitrogen","Carbon dioxide"],
+a:0
+},
+{
+q:"Which part of the blood helps clotting?",
+o:["Red blood cells","White blood cells","Platelets","Plasma"],
+a:2
+},
+{
+q:"Which acid is present in lemon?",
+o:["Acetic acid","Citric acid","Lactic acid","Formic acid"],
+a:1
+},
+{
+q:"Which planet is known for its Great Red Spot?",
+o:["Mars","Jupiter","Venus","Saturn"],
+a:1
+}
+],
+
+
+/* SET 6 */
+
+[
+{
+q:"What is the SI unit of energy?",
+o:["Watt","Joule","Newton","Volt"],
+a:1
+},
+{
+q:"Which gas supports combustion?",
+o:["Nitrogen","Oxygen","Carbon dioxide","Hydrogen"],
+a:1
+},
+{
+q:"Which organ produces insulin?",
+o:["Liver","Pancreas","Kidney","Heart"],
+a:1
+},
+{
+q:"What is the chemical symbol of Silver?",
+o:["Si","Ag","Au","S"],
+a:1
+},
+{
+q:"Which vitamin deficiency causes rickets?",
+o:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+a:3
+},
+{
+q:"Which is the smallest planet in our Solar System?",
+o:["Mars","Mercury","Venus","Earth"],
+a:1
+},
+{
+q:"Which instrument measures electric voltage?",
+o:["Ammeter","Voltmeter","Barometer","Hygrometer"],
+a:1
+},
+{
+q:"Which gas is called producer gas?",
+o:["Carbon monoxide mixture","Oxygen","Hydrogen","Helium"],
+a:0
+},
+{
+q:"Which organ stores bile?",
+o:["Gall bladder","Kidney","Heart","Lung"],
+a:0
+},
+{
+q:"Which substance is used in pencils?",
+o:["Graphite","Diamond","Iron","Copper"],
+a:0
+}
+],
+
+
+/* SET 7 */
+
+[
+{
+q:"Which law explains action and reaction?",
+o:["Newton's First Law","Newton's Second Law","Newton's Third Law","Ohm's Law"],
+a:2
+},
+{
+q:"Which gas is released during photosynthesis?",
+o:["Carbon dioxide","Oxygen","Nitrogen","Hydrogen"],
+a:1
+},
+{
+q:"Which is the largest gland in the human body?",
+o:["Pancreas","Liver","Thyroid","Pituitary"],
+a:1
+},
+{
+q:"Which metal is used for electrical wiring commonly?",
+o:["Copper","Gold","Lead","Mercury"],
+a:0
+},
+{
+q:"Which acid is present in curd?",
+o:["Citric acid","Lactic acid","Acetic acid","Formic acid"],
+a:1
+},
+{
+q:"Which planet is called Earth's twin?",
+o:["Mars","Venus","Jupiter","Saturn"],
+a:1
+},
+{
+q:"Which part of the ear helps maintain balance?",
+o:["Cochlea","Semicircular canals","Eardrum","Pinna"],
+a:1
+},
+{
+q:"What is the normal human body temperature approximately?",
+o:["27°C","37°C","47°C","57°C"],
+a:1
+},
+{
+q:"Which gas is used in balloons to make them float?",
+o:["Oxygen","Helium","Nitrogen","Carbon dioxide"],
+a:1
+},
+{
+q:"Which vitamin is also known as ascorbic acid?",
+o:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+a:2
+}
+],
+
+
+/* SET 8 */
+
+[
+{
+q:"Which unit is used to measure frequency?",
+o:["Hertz","Watt","Joule","Newton"],
+a:0
+},
+{
+q:"Which gas is mainly responsible for acid rain?",
+o:["Oxygen","Sulphur dioxide","Hydrogen","Helium"],
+a:1
+},
+{
+q:"Which organ controls the activities of the human body?",
+o:["Heart","Brain","Kidney","Liver"],
+a:1
+},
+{
+q:"Which element is essential for haemoglobin?",
+o:["Calcium","Iron","Sodium","Potassium"],
+a:1
+},
+{
+q:"Which planet takes about 365 days to revolve around the Sun?",
+o:["Mars","Earth","Venus","Jupiter"],
+a:1
+},
+{
+q:"What is the chemical formula of carbon dioxide?",
+o:["CO","CO2","C2O","CaO"],
+a:1
+},
+{
+q:"Which blood cells carry oxygen?",
+o:["White blood cells","Red blood cells","Platelets","Plasma"],
+a:1
+},
+{
+q:"Which instrument measures humidity?",
+o:["Hygrometer","Barometer","Ammeter","Voltmeter"],
+a:0
+},
+{
+q:"Which gas is used for welding?",
+o:["Oxygen and acetylene","Nitrogen","Helium only","Carbon dioxide only"],
+a:0
+},
+{
+q:"Which part of the plant absorbs water?",
+o:["Leaf","Flower","Root","Fruit"],
+a:2
+}
+],
+
+
+/* SET 9 */
+
+[
+{
+q:"Which form of energy is stored in food?",
+o:["Chemical energy","Light energy","Sound energy","Nuclear energy"],
+a:0
+},
+{
+q:"Which gas is present in the highest percentage in air?",
+o:["Oxygen","Nitrogen","Carbon dioxide","Argon"],
+a:1
+},
+{
+q:"Which organ filters waste from the blood?",
+o:["Lungs","Kidneys","Heart","Stomach"],
+a:1
+},
+{
+q:"Which metal is used in thermometers traditionally?",
+o:["Iron","Mercury","Copper","Aluminium"],
+a:1
+},
+{
+q:"Which vitamin is important for blood clotting?",
+o:["Vitamin A","Vitamin C","Vitamin K","Vitamin E"],
+a:2
+},
+{
+q:"Which planet is the hottest planet in our Solar System?",
+o:["Mercury","Venus","Mars","Jupiter"],
+a:1
+},
+{
+q:"What is the SI unit of pressure?",
+o:["Pascal","Joule","Watt","Newton"],
+a:0
+},
+{
+q:"Which acid is present in the human stomach?",
+o:["Hydrochloric acid","Citric acid","Acetic acid","Lactic acid"],
+a:0
+},
+{
+q:"Which part of the eye controls the amount of light entering?",
+o:["Retina","Iris","Lens","Cornea"],
+a:1
+},
+{
+q:"Which gas is used by plants for photosynthesis?",
+o:["Oxygen","Carbon dioxide","Nitrogen","Hydrogen"],
+a:1
+}
+],
+
+
+/* SET 10 */
+
+[
+{
+q:"Which type of lens is used to correct short-sightedness?",
+o:["Convex lens","Concave lens","Cylindrical lens","Plane glass"],
+a:1
+},
+{
+q:"Which gas is known as the greenhouse gas among these?",
+o:["Oxygen","Carbon dioxide","Nitrogen","Hydrogen"],
+a:1
+},
+{
+q:"Which organ produces bile?",
+o:["Liver","Kidney","Heart","Lung"],
+a:0
+},
+{
+q:"Which element has the chemical symbol K?",
+o:["Krypton","Potassium","Calcium","Copper"],
+a:1
+},
+{
+q:"Which vitamin is called the sunshine vitamin?",
+o:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+a:3
+},
+{
+q:"Which planet has the most prominent ring system?",
+o:["Earth","Saturn","Mars","Venus"],
+a:1
+},
+{
+q:"Which instrument measures wind speed?",
+o:["Anemometer","Barometer","Thermometer","Hygrometer"],
+a:0
+},
+{
+q:"Which blood component transports nutrients and hormones?",
+o:["Plasma","Platelets","Red cells","White cells"],
+a:0
+},
+{
+q:"Which substance is commonly used to neutralize an acid?",
+o:["Base","Salt only","Water only","Oxygen"],
+a:0
+},
+{
+q:"Which part of the human body contains the smallest bones?",
+o:["Nose","Ear","Hand","Foot"],
+a:1
+}
+
+]
+
+];
+
+
+/* =========================
+   QUIZ VARIABLES
+========================= */
+
+let currentSet = 0;
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+
+/* =========================
+   START SET
+========================= */
+
+function startSet(setNumber){
+
+    currentSet = setNumber;
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("setSelection").style.display =
+        "none";
+
+    document.getElementById("result").style.display =
+        "none";
+
+    document.getElementById("quiz").style.display =
+        "block";
+
+    loadQuestion();
+}
+
+
+/* =========================
+   LOAD QUESTION
+========================= */
+
+function loadQuestion(){
+
+    answered = false;
+
+    const q =
+        questionSets[currentSet][currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " of 10";
+
+    document.getElementById("question").textContent =
+        q.q;
+
+    const options =
+        document.getElementById("options");
+
+    options.innerHTML = "";
+
+    q.o.forEach(function(option,index){
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent =
+            String.fromCharCode(65 + index) +
+            ") " +
+            option;
+
+        button.onclick = function(){
+
+            checkAnswer(button,index);
+
+        };
+
+        options.appendChild(button);
+
+    });
+
+    document.getElementById("nextBtn").style.display =
+        "none";
+}
+
+
+/* =========================
+   CHECK ANSWER
+========================= */
+
+function checkAnswer(button,index){
+
+    if(answered) return;
+
+    answered = true;
+
+    const correct =
+        questionSets[currentSet][currentQuestion].a;
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+    if(index === correct){
+
+        button.classList.add("correct");
+
+        score++;
+
+    }else{
+
+        button.classList.add("wrong");
+
+        buttons[correct].classList.add("correct");
+
+    }
+
+    document.getElementById("nextBtn").style.display =
+        "block";
+}
+
+
+/* =========================
+   NEXT QUESTION
+========================= */
+
+function nextQuestion(){
+
+    currentQuestion++;
+
+    if(currentQuestion < 10){
+
+        loadQuestion();
+
+    }else{
+
+        showResult();
+
+    }
+
+}
+
+
+/* =========================
+   SHOW RESULT
+========================= */
+
+function showResult(){
+
+    document.getElementById("quiz").style.display =
+        "none";
+
+    document.getElementById("result").style.display =
+        "block";
+
+    document.getElementById("score").textContent =
+        "Your Score: " +
+        score +
+        " / 10";
+
+    let message;
+
+    if(score >= 8){
+
+        message =
+            "🏆 Excellent! Your Science preparation is very good.";
+
+    }else if(score >= 5){
+
+        message =
+            "👍 Good! Keep practising for better results.";
+
+    }else{
+
+        message =
+            "📚 Keep practising. You can improve your score.";
+
+    }
+
+    document.getElementById("message").textContent =
+        message;
+}
+
+
+/* =========================
+   RESTART
+========================= */
+
+function restartSet(){
+
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("result").style.display =
+        "none";
+
+    document.getElementById("quiz").style.display =
+        "block";
+
+    loadQuestion();
+}
+
+
+/* =========================
+   BACK TO SETS
+========================= */
+
+function backToSets(){
+
+    document.getElementById("result").style.display =
+        "none";
+
+    document.getElement
