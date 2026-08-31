@@ -221,15 +221,11 @@ footer{
 
 <header>
 
-    <h1
-        data-en="🔬 Science Quiz"
-        data-bn="🔬 সায়েন্স কুইজ">
+    <h1 id="pageTitle">
         🔬 Science Quiz
     </h1>
 
-    <p
-        data-en="Physics • Chemistry • Biology"
-        data-bn="পদার্থবিদ্যা • রসায়ন • জীববিদ্যা">
+    <p id="pageSubtitle">
         Physics • Chemistry • Biology
     </p>
 
@@ -242,9 +238,7 @@ footer{
 
 <div class="quiz-box" id="setSelection">
 
-    <h2 class="quiz-title"
-        data-en="🚆 Select Question Set"
-        data-bn="🚆 প্রশ্নের সেট নির্বাচন করুন">
+    <h2 class="quiz-title" id="setTitle">
         🚆 Select Question Set
     </h2>
 
@@ -294,9 +288,7 @@ footer{
 
 <div class="quiz-box" id="result">
 
-    <h2 class="quiz-title"
-        data-en="🎉 Quiz Completed!"
-        data-bn="🎉 কুইজ শেষ হয়েছে!">
+    <h2 class="quiz-title" id="completedTitle">
         🎉 Quiz Completed!
     </h2>
 
@@ -306,15 +298,13 @@ footer{
 
     <button class="restart-btn"
         onclick="restartSet()"
-        data-en="🔄 Play Again"
-        data-bn="🔄 আবার খেলুন">
+        id="playAgain">
         🔄 Play Again
     </button>
 
     <button class="back-btn"
         onclick="backToSets()"
-        data-en="📚 Choose Another Set"
-        data-bn="📚 অন্য সেট নির্বাচন করুন">
+        id="chooseSet">
         📚 Choose Another Set
     </button>
 
@@ -327,9 +317,7 @@ footer{
 
     <p>© 2026 Angshu Math Zone</p>
 
-    <p
-        data-en="Learn Mathematics • Prepare Better • Achieve More"
-        data-bn="গণিত শিখুন • ভালোভাবে প্রস্তুতি নিন • সফলতা অর্জন করুন">
+    <p id="footerText">
         Learn Mathematics • Prepare Better • Achieve More
     </p>
 
@@ -338,568 +326,760 @@ footer{
 
 <script>
 
-/* =========================
+/* =====================================================
    QUESTION BANK
    10 SETS × 10 QUESTIONS
-========================= */
+   ENGLISH + BENGALI
+===================================================== */
 
 const questionSets = [
 
-/* SET 1 */
+/* ================= SET 1 ================= */
 
 [
 {
-q:"What is the SI unit of force?",
-o:["Joule","Newton","Watt","Pascal"],
+q_en:"What is the SI unit of force?",
+q_bn:"বলের SI একক কী?",
+o_en:["Joule","Newton","Watt","Pascal"],
+o_bn:["জুল","নিউটন","ওয়াট","প্যাসকেল"],
 a:1
 },
 {
-q:"Which gas is most abundant in Earth's atmosphere?",
-o:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+q_en:"Which gas is most abundant in Earth's atmosphere?",
+q_bn:"পৃথিবীর বায়ুমণ্ডলে কোন গ্যাসের পরিমাণ সবচেয়ে বেশি?",
+o_en:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+o_bn:["অক্সিজেন","নাইট্রোজেন","কার্বন ডাই-অক্সাইড","হাইড্রোজেন"],
 a:1
 },
 {
-q:"Which organ purifies blood in the human body?",
-o:["Heart","Lungs","Kidney","Stomach"],
+q_en:"Which organ purifies blood in the human body?",
+q_bn:"মানবদেহে কোন অঙ্গ রক্ত পরিশোধন করে?",
+o_en:["Heart","Lungs","Kidney","Stomach"],
+o_bn:["হৃদপিণ্ড","ফুসফুস","কিডনি","পাকস্থলী"],
 a:2
 },
 {
-q:"What is the chemical symbol of Sodium?",
-o:["So","Na","S","Sd"],
+q_en:"What is the chemical symbol of Sodium?",
+q_bn:"সোডিয়ামের রাসায়নিক সংকেত কী?",
+o_en:["So","Na","S","Sd"],
+o_bn:["So","Na","S","Sd"],
 a:1
 },
 {
-q:"Which vitamin is produced in the skin by sunlight?",
-o:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+q_en:"Which vitamin is produced in the skin by sunlight?",
+q_bn:"সূর্যের আলোতে ত্বকে কোন ভিটামিন তৈরি হয়?",
+o_en:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+o_bn:["ভিটামিন A","ভিটামিন B","ভিটামিন C","ভিটামিন D"],
 a:3
 },
 {
-q:"Which planet is known as the Red Planet?",
-o:["Venus","Mars","Jupiter","Mercury"],
+q_en:"Which planet is known as the Red Planet?",
+q_bn:"কোন গ্রহকে লাল গ্রহ বলা হয়?",
+o_en:["Venus","Mars","Jupiter","Mercury"],
+o_bn:["শুক্র","মঙ্গল","বৃহস্পতি","বুধ"],
 a:1
 },
 {
-q:"What is the boiling point of water at normal pressure?",
-o:["50°C","75°C","100°C","150°C"],
+q_en:"What is the boiling point of water at normal pressure?",
+q_bn:"স্বাভাবিক চাপে জলের স্ফুটনাঙ্ক কত?",
+o_en:["50°C","75°C","100°C","150°C"],
+o_bn:["50°C","75°C","100°C","150°C"],
 a:2
 },
 {
-q:"Which part of a plant performs photosynthesis?",
-o:["Root","Stem","Leaf","Flower"],
+q_en:"Which part of a plant performs photosynthesis?",
+q_bn:"উদ্ভিদের কোন অংশ সালোকসংশ্লেষ করে?",
+o_en:["Root","Stem","Leaf","Flower"],
+o_bn:["মূল","কাণ্ড","পাতা","ফুল"],
 a:2
 },
 {
-q:"Which metal is liquid at room temperature?",
-o:["Iron","Copper","Mercury","Aluminium"],
+q_en:"Which metal is liquid at room temperature?",
+q_bn:"কোন ধাতু ঘরের তাপমাত্রায় তরল থাকে?",
+o_en:["Iron","Copper","Mercury","Aluminium"],
+o_bn:["লোহা","তামা","পারদ","অ্যালুমিনিয়াম"],
 a:2
 },
 {
-q:"Which blood cells fight infections?",
-o:["Red blood cells","White blood cells","Platelets","Plasma"],
+q_en:"Which blood cells fight infections?",
+q_bn:"কোন রক্তকণিকা সংক্রমণের বিরুদ্ধে লড়াই করে?",
+o_en:["Red blood cells","White blood cells","Platelets","Plasma"],
+o_bn:["লোহিত রক্তকণিকা","শ্বেত রক্তকণিকা","প্লেটলেট","প্লাজমা"],
 a:1
 }
 ],
 
-
-/* SET 2 */
+/* ================= SET 2 ================= */
 
 [
 {
-q:"What is the SI unit of electric current?",
-o:["Volt","Ampere","Ohm","Watt"],
+q_en:"What is the SI unit of electric current?",
+q_bn:"তড়িৎ প্রবাহের SI একক কী?",
+o_en:["Volt","Ampere","Ohm","Watt"],
+o_bn:["ভোল্ট","অ্যাম্পিয়ার","ওহম","ওয়াট"],
 a:1
 },
 {
-q:"Which gas is necessary for respiration?",
-o:["Nitrogen","Oxygen","Hydrogen","Helium"],
+q_en:"Which gas is necessary for respiration?",
+q_bn:"শ্বাসক্রিয়ার জন্য কোন গ্যাস প্রয়োজন?",
+o_en:["Nitrogen","Oxygen","Hydrogen","Helium"],
+o_bn:["নাইট্রোজেন","অক্সিজেন","হাইড্রোজেন","হিলিয়াম"],
 a:1
 },
 {
-q:"What is the pH value of pure water?",
-o:["5","6","7","8"],
+q_en:"What is the pH value of pure water?",
+q_bn:"বিশুদ্ধ জলের pH মান কত?",
+o_en:["5","6","7","8"],
+o_bn:["5","6","7","8"],
 a:2
 },
 {
-q:"Which is the largest organ of the human body?",
-o:["Heart","Liver","Skin","Lungs"],
+q_en:"Which is the largest organ of the human body?",
+q_bn:"মানবদেহের বৃহত্তম অঙ্গ কোনটি?",
+o_en:["Heart","Liver","Skin","Lungs"],
+o_bn:["হৃদপিণ্ড","যকৃত","ত্বক","ফুসফুস"],
 a:2
 },
 {
-q:"Which planet is the largest in our Solar System?",
-o:["Earth","Saturn","Jupiter","Mars"],
+q_en:"Which planet is the largest in our Solar System?",
+q_bn:"আমাদের সৌরজগতের বৃহত্তম গ্রহ কোনটি?",
+o_en:["Earth","Saturn","Jupiter","Mars"],
+o_bn:["পৃথিবী","শনি","বৃহস্পতি","মঙ্গল"],
 a:2
 },
 {
-q:"What is the chemical formula of water?",
-o:["CO2","H2O","O2","NaCl"],
+q_en:"What is the chemical formula of water?",
+q_bn:"জলের রাসায়নিক সংকেত কী?",
+o_en:["CO2","H2O","O2","NaCl"],
+o_bn:["CO₂","H₂O","O₂","NaCl"],
 a:1
 },
 {
-q:"Which vitamin helps in blood clotting?",
-o:["Vitamin A","Vitamin C","Vitamin D","Vitamin K"],
+q_en:"Which vitamin helps in blood clotting?",
+q_bn:"রক্ত জমাট বাঁধতে কোন ভিটামিন সাহায্য করে?",
+o_en:["Vitamin A","Vitamin C","Vitamin D","Vitamin K"],
+o_bn:["ভিটামিন A","ভিটামিন C","ভিটামিন D","ভিটামিন K"],
 a:3
 },
 {
-q:"Which instrument measures temperature?",
-o:["Barometer","Thermometer","Ammeter","Hygrometer"],
+q_en:"Which instrument measures temperature?",
+q_bn:"তাপমাত্রা মাপার যন্ত্র কোনটি?",
+o_en:["Barometer","Thermometer","Ammeter","Hygrometer"],
+o_bn:["ব্যারোমিটার","থার্মোমিটার","অ্যামিটার","হাইগ্রোমিটার"],
 a:1
 },
 {
-q:"Which acid is present in vinegar?",
-o:["Citric acid","Acetic acid","Sulphuric acid","Hydrochloric acid"],
+q_en:"Which acid is present in vinegar?",
+q_bn:"ভিনিগারে কোন অ্যাসিড থাকে?",
+o_en:["Citric acid","Acetic acid","Sulphuric acid","Hydrochloric acid"],
+o_bn:["সাইট্রিক অ্যাসিড","অ্যাসিটিক অ্যাসিড","সালফিউরিক অ্যাসিড","হাইড্রোক্লোরিক অ্যাসিড"],
 a:1
 },
 {
-q:"Which organ pumps blood throughout the body?",
-o:["Liver","Kidney","Heart","Lung"],
+q_en:"Which organ pumps blood throughout the body?",
+q_bn:"কোন অঙ্গ সারা শরীরে রক্ত পাম্প করে?",
+o_en:["Liver","Kidney","Heart","Lung"],
+o_bn:["যকৃত","কিডনি","হৃদপিণ্ড","ফুসফুস"],
 a:2
 }
 ],
 
-
-/* SET 3 */
+/* ================= SET 3 ================= */
 
 [
 {
-q:"What is the SI unit of power?",
-o:["Joule","Newton","Watt","Pascal"],
+q_en:"What is the SI unit of power?",
+q_bn:"ক্ষমতার SI একক কী?",
+o_en:["Joule","Newton","Watt","Pascal"],
+o_bn:["জুল","নিউটন","ওয়াট","প্যাসকেল"],
 a:2
 },
 {
-q:"Which gas is used by plants during photosynthesis?",
-o:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+q_en:"Which gas is used by plants during photosynthesis?",
+q_bn:"সালোকসংশ্লেষের সময় উদ্ভিদ কোন গ্যাস ব্যবহার করে?",
+o_en:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+o_bn:["অক্সিজেন","নাইট্রোজেন","কার্বন ডাই-অক্সাইড","হাইড্রোজেন"],
 a:2
 },
 {
-q:"Which is the nearest star to Earth?",
-o:["Moon","Sun","Mars","Sirius"],
+q_en:"Which is the nearest star to Earth?",
+q_bn:"পৃথিবীর নিকটতম নক্ষত্র কোনটি?",
+o_en:["Moon","Sun","Mars","Sirius"],
+o_bn:["চাঁদ","সূর্য","মঙ্গল","সিরিয়াস"],
 a:1
 },
 {
-q:"Which mineral is important for healthy bones and teeth?",
-o:["Iron","Calcium","Sodium","Potassium"],
+q_en:"Which mineral is important for healthy bones and teeth?",
+q_bn:"সুস্থ হাড় ও দাঁতের জন্য কোন খনিজ গুরুত্বপূর্ণ?",
+o_en:["Iron","Calcium","Sodium","Potassium"],
+o_bn:["লোহা","ক্যালসিয়াম","সোডিয়াম","পটাশিয়াম"],
 a:1
 },
 {
-q:"What is the chemical symbol of Iron?",
-o:["Ir","Fe","In","I"],
+q_en:"What is the chemical symbol of Iron?",
+q_bn:"লোহার রাসায়নিক সংকেত কী?",
+o_en:["Ir","Fe","In","I"],
+o_bn:["Ir","Fe","In","I"],
 a:1
 },
 {
-q:"Which organ is mainly responsible for digestion?",
-o:["Stomach","Heart","Brain","Kidney"],
+q_en:"Which organ is mainly responsible for digestion?",
+q_bn:"পরিপাকের জন্য প্রধানত কোন অঙ্গ দায়ী?",
+o_en:["Stomach","Heart","Brain","Kidney"],
+o_bn:["পাকস্থলী","হৃদপিণ্ড","মস্তিষ্ক","কিডনি"],
 a:0
 },
 {
-q:"What is the freezing point of water?",
-o:["0°C","10°C","50°C","100°C"],
+q_en:"What is the freezing point of water?",
+q_bn:"জলের হিমাঙ্ক কত?",
+o_en:["0°C","10°C","50°C","100°C"],
+o_bn:["0°C","10°C","50°C","100°C"],
 a:0
 },
 {
-q:"Which planet is famous for its rings?",
-o:["Mars","Venus","Saturn","Mercury"],
+q_en:"Which planet is famous for its rings?",
+q_bn:"কোন গ্রহ তার বলয়ের জন্য বিখ্যাত?",
+o_en:["Mars","Venus","Saturn","Mercury"],
+o_bn:["মঙ্গল","শুক্র","শনি","বুধ"],
 a:2
 },
 {
-q:"Which part of the human body controls the nervous system?",
-o:["Heart","Brain","Liver","Kidney"],
+q_en:"Which part of the human body controls the nervous system?",
+q_bn:"মানবদেহের কোন অংশ স্নায়ুতন্ত্র নিয়ন্ত্রণ করে?",
+o_en:["Heart","Brain","Liver","Kidney"],
+o_bn:["হৃদপিণ্ড","মস্তিষ্ক","যকৃত","কিডনি"],
 a:1
 },
 {
-q:"Which gas is known as laughing gas?",
-o:["Nitrogen","Nitrous oxide","Oxygen","Carbon monoxide"],
+q_en:"Which gas is known as laughing gas?",
+q_bn:"কোন গ্যাসকে লাফিং গ্যাস বলা হয়?",
+o_en:["Nitrogen","Nitrous oxide","Oxygen","Carbon monoxide"],
+o_bn:["নাইট্রোজেন","নাইট্রাস অক্সাইড","অক্সিজেন","কার্বন মনোক্সাইড"],
 a:1
 }
 ],
 
-
-/* SET 4 */
+/* ================= SET 4 ================= */
 
 [
 {
-q:"Which device measures atmospheric pressure?",
-o:["Thermometer","Barometer","Ammeter","Voltmeter"],
+q_en:"Which device measures atmospheric pressure?",
+q_bn:"বায়ুমণ্ডলীয় চাপ মাপার যন্ত্র কোনটি?",
+o_en:["Thermometer","Barometer","Ammeter","Voltmeter"],
+o_bn:["থার্মোমিটার","ব্যারোমিটার","অ্যামিটার","ভোল্টমিটার"],
 a:1
 },
 {
-q:"Which is the hardest natural substance?",
-o:["Gold","Iron","Diamond","Copper"],
+q_en:"Which is the hardest natural substance?",
+q_bn:"প্রাকৃতিকভাবে পাওয়া সবচেয়ে কঠিন পদার্থ কোনটি?",
+o_en:["Gold","Iron","Diamond","Copper"],
+o_bn:["সোনা","লোহা","হীরা","তামা"],
 a:2
 },
 {
-q:"Which blood group is known as the universal donor?",
-o:["AB+","A+","O−","B+"],
+q_en:"Which blood group is known as the universal donor?",
+q_bn:"কোন রক্তের গ্রুপকে সার্বজনীন দাতা বলা হয়?",
+o_en:["AB+","A+","O−","B+"],
+o_bn:["AB+","A+","O−","B+"],
 a:2
 },
 {
-q:"Which planet is closest to the Sun?",
-o:["Earth","Mercury","Venus","Mars"],
+q_en:"Which planet is closest to the Sun?",
+q_bn:"সূর্যের সবচেয়ে কাছের গ্রহ কোনটি?",
+o_en:["Earth","Mercury","Venus","Mars"],
+o_bn:["পৃথিবী","বুধ","শুক্র","মঙ্গল"],
 a:1
 },
 {
-q:"What is the chemical formula of common salt?",
-o:["NaCl","H2O","CO2","CaCO3"],
+q_en:"What is the chemical formula of common salt?",
+q_bn:"সাধারণ লবণের রাসায়নিক সংকেত কী?",
+o_en:["NaCl","H2O","CO2","CaCO3"],
+o_bn:["NaCl","H₂O","CO₂","CaCO₃"],
 a:0
 },
 {
-q:"Which vitamin deficiency causes scurvy?",
-o:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+q_en:"Which vitamin deficiency causes scurvy?",
+q_bn:"কোন ভিটামিনের অভাবে স্কার্ভি রোগ হয়?",
+o_en:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+o_bn:["ভিটামিন A","ভিটামিন B","ভিটামিন C","ভিটামিন D"],
 a:2
 },
 {
-q:"What is the speed of light approximately?",
-o:["3 × 10⁸ m/s","3 × 10⁶ m/s","3 × 10⁴ m/s","3 × 10² m/s"],
+q_en:"What is the speed of light approximately?",
+q_bn:"আলোর বেগ প্রায় কত?",
+o_en:["3 × 10⁸ m/s","3 × 10⁶ m/s","3 × 10⁴ m/s","3 × 10² m/s"],
+o_bn:["3 × 10⁸ মি/সে","3 × 10⁶ মি/সে","3 × 10⁴ মি/সে","3 × 10² মি/সে"],
 a:0
 },
 {
-q:"Which organ removes waste from the blood?",
-o:["Heart","Kidney","Stomach","Brain"],
+q_en:"Which organ removes waste from the blood?",
+q_bn:"কোন অঙ্গ রক্ত থেকে বর্জ্য পদার্থ অপসারণ করে?",
+o_en:["Heart","Kidney","Stomach","Brain"],
+o_bn:["হৃদপিণ্ড","কিডনি","পাকস্থলী","মস্তিষ্ক"],
 a:1
 },
 {
-q:"Which metal is the best conductor of electricity?",
-o:["Iron","Silver","Lead","Mercury"],
+q_en:"Which metal is the best conductor of electricity?",
+q_bn:"কোন ধাতু বিদ্যুতের সবচেয়ে ভালো পরিবাহক?",
+o_en:["Iron","Silver","Lead","Mercury"],
+o_bn:["লোহা","রূপা","সীসা","পারদ"],
 a:1
 },
 {
-q:"Which gas turns limewater milky?",
-o:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+q_en:"Which gas turns limewater milky?",
+q_bn:"কোন গ্যাস চুনের জলকে দুধের মতো সাদা করে?",
+o_en:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+o_bn:["অক্সিজেন","নাইট্রোজেন","কার্বন ডাই-অক্সাইড","হাইড্রোজেন"],
 a:2
 }
 ],
 
-
-/* SET 5 */
+/* ================= SET 5 ================= */
 
 [
 {
-q:"Which force pulls objects towards Earth?",
-o:["Magnetic force","Gravitational force","Frictional force","Electrical force"],
+q_en:"Which force pulls objects towards Earth?",
+q_bn:"কোন বল বস্তুকে পৃথিবীর দিকে টানে?",
+o_en:["Magnetic force","Gravitational force","Frictional force","Electrical force"],
+o_bn:["চৌম্বক বল","মহাকর্ষীয় বল","ঘর্ষণ বল","তড়িৎ বল"],
 a:1
 },
 {
-q:"Which organ helps humans breathe?",
-o:["Lungs","Kidney","Stomach","Liver"],
+q_en:"Which organ helps humans breathe?",
+q_bn:"কোন অঙ্গ মানুষকে শ্বাস নিতে সাহায্য করে?",
+o_en:["Lungs","Kidney","Stomach","Liver"],
+o_bn:["ফুসফুস","কিডনি","পাকস্থলী","যকৃত"],
 a:0
 },
 {
-q:"What is the chemical symbol of Gold?",
-o:["Ag","Au","Gd","Go"],
+q_en:"What is the chemical symbol of Gold?",
+q_bn:"সোনার রাসায়নিক সংকেত কী?",
+o_en:["Ag","Au","Gd","Go"],
+o_bn:["Ag","Au","Gd","Go"],
 a:1
 },
 {
-q:"Which planet is known as the Morning Star?",
-o:["Mars","Venus","Jupiter","Saturn"],
+q_en:"Which planet is known as the Morning Star?",
+q_bn:"কোন গ্রহকে Morning Star বা ভোরের তারা বলা হয়?",
+o_en:["Mars","Venus","Jupiter","Saturn"],
+o_bn:["মঙ্গল","শুক্র","বৃহস্পতি","শনি"],
 a:1
 },
 {
-q:"Which vitamin is important for eyesight?",
-o:["Vitamin A","Vitamin C","Vitamin D","Vitamin K"],
+q_en:"Which vitamin is important for eyesight?",
+q_bn:"দৃষ্টিশক্তির জন্য কোন ভিটামিন গুরুত্বপূর্ণ?",
+o_en:["Vitamin A","Vitamin C","Vitamin D","Vitamin K"],
+o_bn:["ভিটামিন A","ভিটামিন C","ভিটামিন D","ভিটামিন K"],
 a:0
 },
 {
-q:"Which instrument measures electric current?",
-o:["Voltmeter","Ammeter","Barometer","Thermometer"],
+q_en:"Which instrument measures electric current?",
+q_bn:"তড়িৎ প্রবাহ মাপার যন্ত্র কোনটি?",
+o_en:["Voltmeter","Ammeter","Barometer","Thermometer"],
+o_bn:["ভোল্টমিটার","অ্যামিটার","ব্যারোমিটার","থার্মোমিটার"],
 a:1
 },
 {
-q:"What is the main component of natural gas?",
-o:["Methane","Oxygen","Nitrogen","Carbon dioxide"],
+q_en:"What is the main component of natural gas?",
+q_bn:"প্রাকৃতিক গ্যাসের প্রধান উপাদান কী?",
+o_en:["Methane","Oxygen","Nitrogen","Carbon dioxide"],
+o_bn:["মিথেন","অক্সিজেন","নাইট্রোজেন","কার্বন ডাই-অক্সাইড"],
 a:0
 },
 {
-q:"Which part of the blood helps clotting?",
-o:["Red blood cells","White blood cells","Platelets","Plasma"],
+q_en:"Which part of the blood helps clotting?",
+q_bn:"রক্তের কোন অংশ রক্ত জমাট বাঁধতে সাহায্য করে?",
+o_en:["Red blood cells","White blood cells","Platelets","Plasma"],
+o_bn:["লোহিত রক্তকণিকা","শ্বেত রক্তকণিকা","প্লেটলেট","প্লাজমা"],
 a:2
 },
 {
-q:"Which acid is present in lemon?",
-o:["Acetic acid","Citric acid","Lactic acid","Formic acid"],
+q_en:"Which acid is present in lemon?",
+q_bn:"লেবুতে কোন অ্যাসিড থাকে?",
+o_en:["Acetic acid","Citric acid","Lactic acid","Formic acid"],
+o_bn:["অ্যাসিটিক অ্যাসিড","সাইট্রিক অ্যাসিড","ল্যাকটিক অ্যাসিড","ফর্মিক অ্যাসিড"],
 a:1
 },
 {
-q:"Which planet is known for its Great Red Spot?",
-o:["Mars","Jupiter","Venus","Saturn"],
+q_en:"Which planet is known for its Great Red Spot?",
+q_bn:"কোন গ্রহ তার Great Red Spot-এর জন্য পরিচিত?",
+o_en:["Mars","Jupiter","Venus","Saturn"],
+o_bn:["মঙ্গল","বৃহস্পতি","শুক্র","শনি"],
 a:1
 }
 ],
 
-
-/* SET 6 */
+/* ================= SET 6 ================= */
 
 [
 {
-q:"What is the SI unit of energy?",
-o:["Watt","Joule","Newton","Volt"],
+q_en:"What is the SI unit of energy?",
+q_bn:"শক্তির SI একক কী?",
+o_en:["Watt","Joule","Newton","Volt"],
+o_bn:["ওয়াট","জুল","নিউটন","ভোল্ট"],
 a:1
 },
 {
-q:"Which gas supports combustion?",
-o:["Nitrogen","Oxygen","Carbon dioxide","Hydrogen"],
+q_en:"Which gas supports combustion?",
+q_bn:"কোন গ্যাস দহনে সাহায্য করে?",
+o_en:["Nitrogen","Oxygen","Carbon dioxide","Hydrogen"],
+o_bn:["নাইট্রোজেন","অক্সিজেন","কার্বন ডাই-অক্সাইড","হাইড্রোজেন"],
 a:1
 },
 {
-q:"Which organ produces insulin?",
-o:["Liver","Pancreas","Kidney","Heart"],
+q_en:"Which organ produces insulin?",
+q_bn:"কোন অঙ্গ ইনসুলিন উৎপন্ন করে?",
+o_en:["Liver","Pancreas","Kidney","Heart"],
+o_bn:["যকৃত","অগ্ন্যাশয়","কিডনি","হৃদপিণ্ড"],
 a:1
 },
 {
-q:"What is the chemical symbol of Silver?",
-o:["Si","Ag","Au","S"],
+q_en:"What is the chemical symbol of Silver?",
+q_bn:"রূপার রাসায়নিক সংকেত কী?",
+o_en:["Si","Ag","Au","S"],
+o_bn:["Si","Ag","Au","S"],
 a:1
 },
 {
-q:"Which vitamin deficiency causes rickets?",
-o:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+q_en:"Which vitamin deficiency causes rickets?",
+q_bn:"কোন ভিটামিনের অভাবে রিকেটস হয়?",
+o_en:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+o_bn:["ভিটামিন A","ভিটামিন B","ভিটামিন C","ভিটামিন D"],
 a:3
 },
 {
-q:"Which is the smallest planet in our Solar System?",
-o:["Mars","Mercury","Venus","Earth"],
+q_en:"Which is the smallest planet in our Solar System?",
+q_bn:"আমাদের সৌরজগতের ক্ষুদ্রতম গ্রহ কোনটি?",
+o_en:["Mars","Mercury","Venus","Earth"],
+o_bn:["মঙ্গল","বুধ","শুক্র","পৃথিবী"],
 a:1
 },
 {
-q:"Which instrument measures electric voltage?",
-o:["Ammeter","Voltmeter","Barometer","Hygrometer"],
+q_en:"Which instrument measures electric voltage?",
+q_bn:"তড়িৎ বিভব বা ভোল্টেজ মাপার যন্ত্র কোনটি?",
+o_en:["Ammeter","Voltmeter","Barometer","Hygrometer"],
+o_bn:["অ্যামিটার","ভোল্টমিটার","ব্যারোমিটার","হাইগ্রোমিটার"],
 a:1
 },
 {
-q:"Which gas is called producer gas?",
-o:["Carbon monoxide mixture","Oxygen","Hydrogen","Helium"],
+q_en:"Which gas is called producer gas?",
+q_bn:"কোন গ্যাসকে Producer Gas বলা হয়?",
+o_en:["Carbon monoxide mixture","Oxygen","Hydrogen","Helium"],
+o_bn:["কার্বন মনোক্সাইডের মিশ্রণ","অক্সিজেন","হাইড্রোজেন","হিলিয়াম"],
 a:0
 },
 {
-q:"Which organ stores bile?",
-o:["Gall bladder","Kidney","Heart","Lung"],
+q_en:"Which organ stores bile?",
+q_bn:"কোন অঙ্গ পিত্ত সঞ্চয় করে?",
+o_en:["Gall bladder","Kidney","Heart","Lung"],
+o_bn:["পিত্তথলি","কিডনি","হৃদপিণ্ড","ফুসফুস"],
 a:0
 },
 {
-q:"Which substance is used in pencils?",
-o:["Graphite","Diamond","Iron","Copper"],
+q_en:"Which substance is used in pencils?",
+q_bn:"পেন্সিলে কোন পদার্থ ব্যবহার করা হয়?",
+o_en:["Graphite","Diamond","Iron","Copper"],
+o_bn:["গ্রাফাইট","হীরা","লোহা","তামা"],
 a:0
 }
 ],
 
-
-/* SET 7 */
-
-[
-{
-q:"Which law explains action and reaction?",
-o:["Newton's First Law","Newton's Second Law","Newton's Third Law","Ohm's Law"],
-a:2
-},
-{
-q:"Which gas is released during photosynthesis?",
-o:["Carbon dioxide","Oxygen","Nitrogen","Hydrogen"],
-a:1
-},
-{
-q:"Which is the largest gland in the human body?",
-o:["Pancreas","Liver","Thyroid","Pituitary"],
-a:1
-},
-{
-q:"Which metal is used for electrical wiring commonly?",
-o:["Copper","Gold","Lead","Mercury"],
-a:0
-},
-{
-q:"Which acid is present in curd?",
-o:["Citric acid","Lactic acid","Acetic acid","Formic acid"],
-a:1
-},
-{
-q:"Which planet is called Earth's twin?",
-o:["Mars","Venus","Jupiter","Saturn"],
-a:1
-},
-{
-q:"Which part of the ear helps maintain balance?",
-o:["Cochlea","Semicircular canals","Eardrum","Pinna"],
-a:1
-},
-{
-q:"What is the normal human body temperature approximately?",
-o:["27°C","37°C","47°C","57°C"],
-a:1
-},
-{
-q:"Which gas is used in balloons to make them float?",
-o:["Oxygen","Helium","Nitrogen","Carbon dioxide"],
-a:1
-},
-{
-q:"Which vitamin is also known as ascorbic acid?",
-o:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
-a:2
-}
-],
-
-
-/* SET 8 */
+/* ================= SET 7 ================= */
 
 [
 {
-q:"Which unit is used to measure frequency?",
-o:["Hertz","Watt","Joule","Newton"],
+q_en:"Which law explains action and reaction?",
+q_bn:"ক্রিয়া ও প্রতিক্রিয়া কোন সূত্র দ্বারা ব্যাখ্যা করা হয়?",
+o_en:["Newton's First Law","Newton's Second Law","Newton's Third Law","Ohm's Law"],
+o_bn:["নিউটনের প্রথম সূত্র","নিউটনের দ্বিতীয় সূত্র","নিউটনের তৃতীয় সূত্র","ওহমের সূত্র"],
+a:2
+},
+{
+q_en:"Which gas is released during photosynthesis?",
+q_bn:"সালোকসংশ্লেষের সময় কোন গ্যাস নির্গত হয়?",
+o_en:["Carbon dioxide","Oxygen","Nitrogen","Hydrogen"],
+o_bn:["কার্বন ডাই-অক্সাইড","অক্সিজেন","নাইট্রোজেন","হাইড্রোজেন"],
+a:1
+},
+{
+q_en:"Which is the largest gland in the human body?",
+q_bn:"মানবদেহের বৃহত্তম গ্রন্থি কোনটি?",
+o_en:["Pancreas","Liver","Thyroid","Pituitary"],
+o_bn:["অগ্ন্যাশয়","যকৃত","থাইরয়েড","পিটুইটারি"],
+a:1
+},
+{
+q_en:"Which metal is used for electrical wiring commonly?",
+q_bn:"বৈদ্যুতিক তারে সাধারণত কোন ধাতু ব্যবহার করা হয়?",
+o_en:["Copper","Gold","Lead","Mercury"],
+o_bn:["তামা","সোনা","সীসা","পারদ"],
 a:0
 },
 {
-q:"Which gas is mainly responsible for acid rain?",
-o:["Oxygen","Sulphur dioxide","Hydrogen","Helium"],
+q_en:"Which acid is present in curd?",
+q_bn:"দইয়ে কোন অ্যাসিড থাকে?",
+o_en:["Citric acid","Lactic acid","Acetic acid","Formic acid"],
+o_bn:["সাইট্রিক অ্যাসিড","ল্যাকটিক অ্যাসিড","অ্যাসিটিক অ্যাসিড","ফর্মিক অ্যাসিড"],
 a:1
 },
 {
-q:"Which organ controls the activities of the human body?",
-o:["Heart","Brain","Kidney","Liver"],
+q_en:"Which planet is called Earth's twin?",
+q_bn:"কোন গ্রহকে পৃথিবীর যমজ বলা হয়?",
+o_en:["Mars","Venus","Jupiter","Saturn"],
+o_bn:["মঙ্গল","শুক্র","বৃহস্পতি","শনি"],
 a:1
 },
 {
-q:"Which element is essential for haemoglobin?",
-o:["Calcium","Iron","Sodium","Potassium"],
+q_en:"Which part of the ear helps maintain balance?",
+q_bn:"কানের কোন অংশ শরীরের ভারসাম্য বজায় রাখতে সাহায্য করে?",
+o_en:["Cochlea","Semicircular canals","Eardrum","Pinna"],
+o_bn:["ককলিয়া","অর্ধবৃত্তাকার নালী","কানের পর্দা","কর্ণপল্লব"],
 a:1
 },
 {
-q:"Which planet takes about 365 days to revolve around the Sun?",
-o:["Mars","Earth","Venus","Jupiter"],
+q_en:"What is the normal human body temperature approximately?",
+q_bn:"মানবদেহের স্বাভাবিক তাপমাত্রা প্রায় কত?",
+o_en:["27°C","37°C","47°C","57°C"],
+o_bn:["27°C","37°C","47°C","57°C"],
 a:1
 },
 {
-q:"What is the chemical formula of carbon dioxide?",
-o:["CO","CO2","C2O","CaO"],
+q_en:"Which gas is used in balloons to make them float?",
+q_bn:"বেলুনকে ভাসানোর জন্য কোন গ্যাস ব্যবহার করা হয়?",
+o_en:["Oxygen","Helium","Nitrogen","Carbon dioxide"],
+o_bn:["অক্সিজেন","হিলিয়াম","নাইট্রোজেন","কার্বন ডাই-অক্সাইড"],
 a:1
 },
 {
-q:"Which blood cells carry oxygen?",
-o:["White blood cells","Red blood cells","Platelets","Plasma"],
-a:1
-},
-{
-q:"Which instrument measures humidity?",
-o:["Hygrometer","Barometer","Ammeter","Voltmeter"],
-a:0
-},
-{
-q:"Which gas is used for welding?",
-o:["Oxygen and acetylene","Nitrogen","Helium only","Carbon dioxide only"],
-a:0
-},
-{
-q:"Which part of the plant absorbs water?",
-o:["Leaf","Flower","Root","Fruit"],
+q_en:"Which vitamin is also known as ascorbic acid?",
+q_bn:"কোন ভিটামিনকে অ্যাসকরবিক অ্যাসিডও বলা হয়?",
+o_en:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+o_bn:["ভিটামিন A","ভিটামিন B","ভিটামিন C","ভিটামিন D"],
 a:2
 }
 ],
 
-
-/* SET 9 */
+/* ================= SET 8 ================= */
 
 [
 {
-q:"Which form of energy is stored in food?",
-o:["Chemical energy","Light energy","Sound energy","Nuclear energy"],
+q_en:"Which unit is used to measure frequency?",
+q_bn:"কম্পাঙ্ক মাপার একক কোনটি?",
+o_en:["Hertz","Watt","Joule","Newton"],
+o_bn:["হার্টজ","ওয়াট","জুল","নিউটন"],
 a:0
 },
 {
-q:"Which gas is present in the highest percentage in air?",
-o:["Oxygen","Nitrogen","Carbon dioxide","Argon"],
+q_en:"Which gas is mainly responsible for acid rain?",
+q_bn:"অ্যাসিড বৃষ্টির জন্য প্রধানত কোন গ্যাস দায়ী?",
+o_en:["Oxygen","Sulphur dioxide","Hydrogen","Helium"],
+o_bn:["অক্সিজেন","সালফার ডাই-অক্সাইড","হাইড্রোজেন","হিলিয়াম"],
 a:1
 },
 {
-q:"Which organ filters waste from the blood?",
-o:["Lungs","Kidneys","Heart","Stomach"],
+q_en:"Which organ controls the activities of the human body?",
+q_bn:"কোন অঙ্গ মানবদেহের কার্যকলাপ নিয়ন্ত্রণ করে?",
+o_en:["Heart","Brain","Kidney","Liver"],
+o_bn:["হৃদপিণ্ড","মস্তিষ্ক","কিডনি","যকৃত"],
 a:1
 },
 {
-q:"Which metal is used in thermometers traditionally?",
-o:["Iron","Mercury","Copper","Aluminium"],
+q_en:"Which element is essential for haemoglobin?",
+q_bn:"হিমোগ্লোবিনের জন্য কোন মৌল অপরিহার্য?",
+o_en:["Calcium","Iron","Sodium","Potassium"],
+o_bn:["ক্যালসিয়াম","লোহা","সোডিয়াম","পটাশিয়াম"],
 a:1
 },
 {
-q:"Which vitamin is important for blood clotting?",
-o:["Vitamin A","Vitamin C","Vitamin K","Vitamin E"],
+q_en:"Which planet takes about 365 days to revolve around the Sun?",
+q_bn:"সূর্যকে একবার প্রদক্ষিণ করতে প্রায় ৩৬৫ দিন কোন গ্রহের লাগে?",
+o_en:["Mars","Earth","Venus","Jupiter"],
+o_bn:["মঙ্গল","পৃথিবী","শুক্র","বৃহস্পতি"],
+a:1
+},
+{
+q_en:"What is the chemical formula of carbon dioxide?",
+q_bn:"কার্বন ডাই-অক্সাইডের রাসায়নিক সংকেত কী?",
+o_en:["CO","CO2","C2O","CaO"],
+o_bn:["CO","CO₂","C₂O","CaO"],
+a:1
+},
+{
+q_en:"Which blood cells carry oxygen?",
+q_bn:"কোন রক্তকণিকা অক্সিজেন বহন করে?",
+o_en:["White blood cells","Red blood cells","Platelets","Plasma"],
+o_bn:["শ্বেত রক্তকণিকা","লোহিত রক্তকণিকা","প্লেটলেট","প্লাজমা"],
+a:1
+},
+{
+q_en:"Which instrument measures humidity?",
+q_bn:"আর্দ্রতা মাপার যন্ত্র কোনটি?",
+o_en:["Hygrometer","Barometer","Ammeter","Voltmeter"],
+o_bn:["হাইগ্রোমিটার","ব্যারোমিটার","অ্যামিটার","ভোল্টমিটার"],
+a:0
+},
+{
+q_en:"Which gas is used for welding?",
+q_bn:"ওয়েল্ডিংয়ের কাজে কোন গ্যাসের মিশ্রণ ব্যবহার করা হয়?",
+o_en:["Oxygen and acetylene","Nitrogen","Helium only","Carbon dioxide only"],
+o_bn:["অক্সিজেন ও অ্যাসিটিলিন","নাইট্রোজেন","শুধু হিলিয়াম","শুধু কার্বন ডাই-অক্সাইড"],
+a:0
+},
+{
+q_en:"Which part of the plant absorbs water?",
+q_bn:"উদ্ভিদের কোন অংশ জল শোষণ করে?",
+o_en:["Leaf","Flower","Root","Fruit"],
+o_bn:["পাতা","ফুল","মূল","ফল"],
+a:2
+}
+],
+
+/* ================= SET 9 ================= */
+
+[
+{
+q_en:"Which form of energy is stored in food?",
+q_bn:"খাদ্যে কোন ধরনের শক্তি সঞ্চিত থাকে?",
+o_en:["Chemical energy","Light energy","Sound energy","Nuclear energy"],
+o_bn:["রাসায়নিক শক্তি","আলোক শক্তি","শব্দ শক্তি","পারমাণবিক শক্তি"],
+a:0
+},
+{
+q_en:"Which gas is present in the highest percentage in air?",
+q_bn:"বায়ুতে কোন গ্যাসের শতাংশ সবচেয়ে বেশি?",
+o_en:["Oxygen","Nitrogen","Carbon dioxide","Argon"],
+o_bn:["অক্সিজেন","নাইট্রোজেন","কার্বন ডাই-অক্সাইড","আর্গন"],
+a:1
+},
+{
+q_en:"Which organ filters waste from the blood?",
+q_bn:"কোন অঙ্গ রক্ত থেকে বর্জ্য পদার্থ ছেঁকে বের করে?",
+o_en:["Lungs","Kidneys","Heart","Stomach"],
+o_bn:["ফুসফুস","কিডনি","হৃদপিণ্ড","পাকস্থলী"],
+a:1
+},
+{
+q_en:"Which metal is used in thermometers traditionally?",
+q_bn:"প্রথাগতভাবে থার্মোমিটারে কোন ধাতু ব্যবহার করা হয়?",
+o_en:["Iron","Mercury","Copper","Aluminium"],
+o_bn:["লোহা","পারদ","তামা","অ্যালুমিনিয়াম"],
+a:1
+},
+{
+q_en:"Which vitamin is important for blood clotting?",
+q_bn:"রক্ত জমাট বাঁধার জন্য কোন ভিটামিন গুরুত্বপূর্ণ?",
+o_en:["Vitamin A","Vitamin C","Vitamin K","Vitamin E"],
+o_bn:["ভিটামিন A","ভিটামিন C","ভিটামিন K","ভিটামিন E"],
 a:2
 },
 {
-q:"Which planet is the hottest planet in our Solar System?",
-o:["Mercury","Venus","Mars","Jupiter"],
+q_en:"Which planet is the hottest planet in our Solar System?",
+q_bn:"আমাদের সৌরজগতের সবচেয়ে উষ্ণ গ্রহ কোনটি?",
+o_en:["Mercury","Venus","Mars","Jupiter"],
+o_bn:["বুধ","শুক্র","মঙ্গল","বৃহস্পতি"],
 a:1
 },
 {
-q:"What is the SI unit of pressure?",
-o:["Pascal","Joule","Watt","Newton"],
+q_en:"What is the SI unit of pressure?",
+q_bn:"চাপের SI একক কী?",
+o_en:["Pascal","Joule","Watt","Newton"],
+o_bn:["প্যাসকেল","জুল","ওয়াট","নিউটন"],
 a:0
 },
 {
-q:"Which acid is present in the human stomach?",
-o:["Hydrochloric acid","Citric acid","Acetic acid","Lactic acid"],
+q_en:"Which acid is present in the human stomach?",
+q_bn:"মানুষের পাকস্থলীতে কোন অ্যাসিড থাকে?",
+o_en:["Hydrochloric acid","Citric acid","Acetic acid","Lactic acid"],
+o_bn:["হাইড্রোক্লোরিক অ্যাসিড","সাইট্রিক অ্যাসিড","অ্যাসিটিক অ্যাসিড","ল্যাকটিক অ্যাসিড"],
 a:0
 },
 {
-q:"Which part of the eye controls the amount of light entering?",
-o:["Retina","Iris","Lens","Cornea"],
+q_en:"Which part of the eye controls the amount of light entering?",
+q_bn:"চোখের কোন অংশ প্রবেশকারী আলোর পরিমাণ নিয়ন্ত্রণ করে?",
+o_en:["Retina","Iris","Lens","Cornea"],
+o_bn:["রেটিনা","আইরিস","লেন্স","কর্নিয়া"],
 a:1
 },
 {
-q:"Which gas is used by plants for photosynthesis?",
-o:["Oxygen","Carbon dioxide","Nitrogen","Hydrogen"],
+q_en:"Which gas is used by plants for photosynthesis?",
+q_bn:"সালোকসংশ্লেষের জন্য উদ্ভিদ কোন গ্যাস ব্যবহার করে?",
+o_en:["Oxygen","Carbon dioxide","Nitrogen","Hydrogen"],
+o_bn:["অক্সিজেন","কার্বন ডাই-অক্সাইড","নাইট্রোজেন","হাইড্রোজেন"],
 a:1
 }
 ],
 
-
-/* SET 10 */
+/* ================= SET 10 ================= */
 
 [
 {
-q:"Which type of lens is used to correct short-sightedness?",
-o:["Convex lens","Concave lens","Cylindrical lens","Plane glass"],
+q_en:"Which type of lens is used to correct short-sightedness?",
+q_bn:"ক্ষীণদৃষ্টি বা মায়োপিয়া সংশোধনে কোন ধরনের লেন্স ব্যবহার করা হয়?",
+o_en:["Convex lens","Concave lens","Cylindrical lens","Plane glass"],
+o_bn:["উত্তল লেন্স","অবতল লেন্স","নলাকার লেন্স","সমতল কাচ"],
 a:1
 },
 {
-q:"Which gas is known as the greenhouse gas among these?",
-o:["Oxygen","Carbon dioxide","Nitrogen","Hydrogen"],
+q_en:"Which gas is known as the greenhouse gas among these?",
+q_bn:"নিচের কোন গ্যাসটি গ্রিনহাউস গ্যাস হিসেবে পরিচিত?",
+o_en:["Oxygen","Carbon dioxide","Nitrogen","Hydrogen"],
+o_bn:["অক্সিজেন","কার্বন ডাই-অক্সাইড","নাইট্রোজেন","হাইড্রোজেন"],
 a:1
 },
 {
-q:"Which organ produces bile?",
-o:["Liver","Kidney","Heart","Lung"],
+q_en:"Which organ produces bile?",
+q_bn:"কোন অঙ্গ পিত্ত উৎপন্ন করে?",
+o_en:["Liver","Kidney","Heart","Lung"],
+o_bn:["যকৃত","কিডনি","হৃদপিণ্ড","ফুসফুস"],
 a:0
 },
 {
-q:"Which element has the chemical symbol K?",
-o:["Krypton","Potassium","Calcium","Copper"],
+q_en:"Which element has the chemical symbol K?",
+q_bn:"K রাসায়নিক সংকেতটি কোন মৌলের?",
+o_en:["Krypton","Potassium","Calcium","Copper"],
+o_bn:["ক্রিপ্টন","পটাশিয়াম","ক্যালসিয়াম","তামা"],
 a:1
 },
 {
-q:"Which vitamin is called the sunshine vitamin?",
-o:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+q_en:"Which vitamin is called the sunshine vitamin?",
+q_bn:"কোন ভিটামিনকে Sunshine Vitamin বলা হয়?",
+o_en:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+o_bn:["ভিটামিন A","ভিটামিন B","ভিটামিন C","ভিটামিন D"],
 a:3
 },
 {
-q:"Which planet has the most prominent ring system?",
-o:["Earth","Saturn","Mars","Venus"],
+q_en:"Which planet has the most prominent ring system?",
+q_bn:"কোন গ্রহের বলয় ব্যবস্থা সবচেয়ে স্পষ্ট?",
+o_en:["Earth","Saturn","Mars","Venus"],
+o_bn:["পৃথিবী","শনি","মঙ্গল","শুক্র"],
 a:1
 },
 {
-q:"Which instrument measures wind speed?",
-o:["Anemometer","Barometer","Thermometer","Hygrometer"],
+q_en:"Which instrument measures wind speed?",
+q_bn:"বাতাসের গতি মাপার যন্ত্র কোনটি?",
+o_en:["Anemometer","Barometer","Thermometer","Hygrometer"],
+o_bn:["অ্যানিমোমিটার","ব্যারোমিটার","থার্মোমিটার","হাইগ্রোমিটার"],
 a:0
 },
 {
-q:"Which blood component transports nutrients and hormones?",
-o:["Plasma","Platelets","Red cells","White cells"],
+q_en:"Which blood component transports nutrients and hormones?",
+q_bn:"রক্তের কোন উপাদান পুষ্টি ও হরমোন বহন করে?",
+o_en:["Plasma","Platelets","Red cells","White cells"],
+o_bn:["প্লাজমা","প্লেটলেট","লোহিত রক্তকণিকা","শ্বেত রক্তকণিকা"],
 a:0
 },
 {
-q:"Which substance is commonly used to neutralize an acid?",
-o:["Base","Salt only","Water only","Oxygen"],
+q_en:"Which substance is commonly used to neutralize an acid?",
+q_bn:"অ্যাসিডকে প্রশমিত করতে সাধারণত কোন পদার্থ ব্যবহার করা হয়?",
+o_en:["Base","Salt only","Water only","Oxygen"],
+o_bn:["ক্ষার","শুধু লবণ","শুধু জল","অক্সিজেন"],
 a:0
 },
 {
-q:"Which part of the human body contains the smallest bones?",
-o:["Nose","Ear","Hand","Foot"],
+q_en:"Which part of the human body contains the smallest bones?",
+q_bn:"মানবদেহের সবচেয়ে ছোট হাড় কোথায় থাকে?",
+o_en:["Nose","Ear","Hand","Foot"],
+o_bn:["নাক","কান","হাত","পা"],
 a:1
 }
 
@@ -908,19 +1088,114 @@ a:1
 ];
 
 
-/* =========================
+/* =====================================================
    QUIZ VARIABLES
-========================= */
+===================================================== */
 
 let currentSet = 0;
 let currentQuestion = 0;
 let score = 0;
 let answered = false;
+let language = localStorage.getItem("siteLanguage") || "en";
 
 
-/* =========================
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+function setLanguage(lang){
+
+    language = lang;
+
+    localStorage.setItem("siteLanguage",lang);
+
+    if(lang === "bn"){
+
+        document.getElementById("pageTitle").textContent =
+            "🔬 সায়েন্স কুইজ";
+
+        document.getElementById("pageSubtitle").textContent =
+            "পদার্থবিদ্যা • রসায়ন • জীববিদ্যা";
+
+        document.getElementById("setTitle").textContent =
+            "🚆 প্রশ্নের সেট নির্বাচন করুন";
+
+        document.getElementById("completedTitle").textContent =
+            "🎉 কুইজ শেষ হয়েছে!";
+
+        document.getElementById("playAgain").textContent =
+            "🔄 আবার খেলুন";
+
+        document.getElementById("chooseSet").textContent =
+            "📚 অন্য সেট নির্বাচন করুন";
+
+        document.getElementById("footerText").textContent =
+            "গণিত শিখুন • ভালোভাবে প্রস্তুতি নিন • সফলতা অর্জন করুন";
+
+        document.getElementById("bnBtn").style.background =
+            "#2563eb";
+
+        document.getElementById("bnBtn").style.color =
+            "white";
+
+        document.getElementById("enBtn").style.background =
+            "white";
+
+        document.getElementById("enBtn").style.color =
+            "#2563eb";
+
+    }else{
+
+        document.getElementById("pageTitle").textContent =
+            "🔬 Science Quiz";
+
+        document.getElementById("pageSubtitle").textContent =
+            "Physics • Chemistry • Biology";
+
+        document.getElementById("setTitle").textContent =
+            "🚆 Select Question Set";
+
+        document.getElementById("completedTitle").textContent =
+            "🎉 Quiz Completed!";
+
+        document.getElementById("playAgain").textContent =
+            "🔄 Play Again";
+
+        document.getElementById("chooseSet").textContent =
+            "📚 Choose Another Set";
+
+        document.getElementById("footerText").textContent =
+            "Learn Mathematics • Prepare Better • Achieve More";
+
+        document.getElementById("enBtn").style.background =
+            "#2563eb";
+
+        document.getElementById("enBtn").style.color =
+            "white";
+
+        document.getElementById("bnBtn").style.background =
+            "white";
+
+        document.getElementById("bnBtn").style.color =
+            "#2563eb";
+    }
+
+    /*
+       যদি Quiz চলছে, তাহলে বর্তমান প্রশ্নও
+       সঙ্গে সঙ্গে নতুন ভাষায় দেখাবে।
+    */
+
+    if(
+        document.getElementById("quiz").style.display === "block"
+    ){
+        loadQuestion();
+    }
+}
+
+
+/* =====================================================
    START SET
-========================= */
+===================================================== */
 
 function startSet(setNumber){
 
@@ -941,9 +1216,9 @@ function startSet(setNumber){
 }
 
 
-/* =========================
+/* =====================================================
    LOAD QUESTION
-========================= */
+===================================================== */
 
 function loadQuestion(){
 
@@ -952,20 +1227,45 @@ function loadQuestion(){
     const q =
         questionSets[currentSet][currentQuestion];
 
+    let questionText;
+
+    let optionsList;
+
+    if(language === "bn"){
+
+        questionText = q.q_bn;
+        optionsList = q.o_bn;
+
+    }else{
+
+        questionText = q.q_en;
+        optionsList = q.o_en;
+    }
+
+
     document.getElementById("questionNumber").textContent =
+        language === "bn"
+        ?
+        "প্রশ্ন " +
+        (currentQuestion + 1) +
+        " / 10"
+        :
         "Question " +
         (currentQuestion + 1) +
         " of 10";
 
+
     document.getElementById("question").textContent =
-        q.q;
+        questionText;
+
 
     const options =
         document.getElementById("options");
 
     options.innerHTML = "";
 
-    q.o.forEach(function(option,index){
+
+    optionsList.forEach(function(option,index){
 
         const button =
             document.createElement("button");
@@ -987,14 +1287,23 @@ function loadQuestion(){
 
     });
 
+
     document.getElementById("nextBtn").style.display =
         "none";
+
+
+    document.getElementById("nextBtn").textContent =
+        language === "bn"
+        ?
+        "পরের প্রশ্ন →"
+        :
+        "Next Question →";
 }
 
 
-/* =========================
+/* =====================================================
    CHECK ANSWER
-========================= */
+===================================================== */
 
 function checkAnswer(button,index){
 
@@ -1007,6 +1316,7 @@ function checkAnswer(button,index){
 
     const buttons =
         document.querySelectorAll(".option");
+
 
     if(index === correct){
 
@@ -1022,20 +1332,24 @@ function checkAnswer(button,index){
 
     }
 
+
     document.getElementById("nextBtn").style.display =
         "block";
 }
 
 
-/* =========================
+/* =====================================================
    NEXT QUESTION
-========================= */
+===================================================== */
 
 function nextQuestion(){
 
     currentQuestion++;
 
-    if(currentQuestion < 10){
+    if(
+        currentQuestion <
+        questionSets[currentSet].length
+    ){
 
         loadQuestion();
 
@@ -1044,13 +1358,12 @@ function nextQuestion(){
         showResult();
 
     }
-
 }
 
 
-/* =========================
+/* =====================================================
    SHOW RESULT
-========================= */
+===================================================== */
 
 function showResult(){
 
@@ -1060,38 +1373,59 @@ function showResult(){
     document.getElementById("result").style.display =
         "block";
 
+
     document.getElementById("score").textContent =
+        language === "bn"
+        ?
+        "আপনার স্কোর: " +
+        score +
+        " / 10"
+        :
         "Your Score: " +
         score +
         " / 10";
 
+
     let message;
+
 
     if(score >= 8){
 
         message =
+            language === "bn"
+            ?
+            "🏆 অসাধারণ! আপনার Science প্রস্তুতি খুব ভালো।"
+            :
             "🏆 Excellent! Your Science preparation is very good.";
 
     }else if(score >= 5){
 
         message =
+            language === "bn"
+            ?
+            "👍 ভালো! আরও ভালো ফলাফলের জন্য অনুশীলন করুন।"
+            :
             "👍 Good! Keep practising for better results.";
 
     }else{
 
         message =
+            language === "bn"
+            ?
+            "📚 অনুশীলন চালিয়ে যান। আপনি আরও ভালো করতে পারবেন।"
+            :
             "📚 Keep practising. You can improve your score.";
-
     }
+
 
     document.getElementById("message").textContent =
         message;
 }
 
 
-/* =========================
-   RESTART
-========================= */
+/* =====================================================
+   RESTART SET
+===================================================== */
 
 function restartSet(){
 
@@ -1108,245 +1442,34 @@ function restartSet(){
 }
 
 
-
-/* =========================
-   START SET
-========================= */
-
-function startSet(setNumber){
-
-    currentSet = setNumber;
-    currentQuestion = 0;
-    score = 0;
-
-    document.getElementById("setSelection").style.display = "none";
-    document.getElementById("result").style.display = "none";
-    document.getElementById("quiz").style.display = "block";
-
-    loadQuestion();
-}
-
-
-/* =========================
-   LOAD QUESTION
-========================= */
-
-function loadQuestion(){
-
-    answered = false;
-
-    const q = questionSets[currentSet][currentQuestion];
-
-    document.getElementById("questionNumber").textContent =
-        "Question " + (currentQuestion + 1) + " of 10";
-
-    document.getElementById("question").textContent = q.q;
-
-    const options = document.getElementById("options");
-
-    options.innerHTML = "";
-
-    q.o.forEach(function(option,index){
-
-        const button = document.createElement("button");
-
-        button.className = "option";
-
-        button.textContent =
-            String.fromCharCode(65 + index) + ") " + option;
-
-        button.onclick = function(){
-
-            checkAnswer(button,index);
-
-        };
-
-        options.appendChild(button);
-
-    });
-
-    document.getElementById("nextBtn").style.display = "none";
-}
-
-
-/* =========================
-   CHECK ANSWER
-========================= */
-
-function checkAnswer(button,index){
-
-    if(answered) return;
-
-    answered = true;
-
-    const correct =
-        questionSets[currentSet][currentQuestion].a;
-
-    const buttons =
-        document.querySelectorAll(".option");
-
-    if(index === correct){
-
-        button.classList.add("correct");
-
-        score++;
-
-    }else{
-
-        button.classList.add("wrong");
-
-        buttons[correct].classList.add("correct");
-
-    }
-
-    document.getElementById("nextBtn").style.display = "block";
-}
-
-
-/* =========================
-   NEXT QUESTION
-========================= */
-
-function nextQuestion(){
-
-    currentQuestion++;
-
-    if(currentQuestion < 10){
-
-        loadQuestion();
-
-    }else{
-
-        showResult();
-
-    }
-
-}
-
-
-/* =========================
-   SHOW RESULT
-========================= */
-
-function showResult(){
-
-    document.getElementById("quiz").style.display = "none";
-
-    document.getElementById("result").style.display = "block";
-
-    document.getElementById("score").textContent =
-        "Your Score: " + score + " / 10";
-
-    let message;
-
-    if(score >= 8){
-
-        message =
-            "🏆 Excellent! Your Science preparation is very good.";
-
-    }else if(score >= 5){
-
-        message =
-            "👍 Good! Keep practising for better results.";
-
-    }else{
-
-        message =
-            "📚 Keep practising. You can improve your score.";
-
-    }
-
-    document.getElementById("message").textContent = message;
-}
-
-
-/* =========================
-   RESTART
-========================= */
-
-function restartSet(){
-
-    currentQuestion = 0;
-    score = 0;
-
-    document.getElementById("result").style.display = "none";
-    document.getElementById("quiz").style.display = "block";
-
-    loadQuestion();
-}
-
-
-/* =========================
+/* =====================================================
    BACK TO SETS
-========================= */
+===================================================== */
 
 function backToSets(){
 
-    document.getElementById("result").style.display = "none";
-    document.getElementById("quiz").style.display = "none";
-    document.getElementById("setSelection").style.display = "block";
+    document.getElementById("result").style.display =
+        "none";
 
+    document.getElementById("quiz").style.display =
+        "none";
+
+    document.getElementById("setSelection").style.display =
+        "block";
 }
 
 
-/* =========================
-   LANGUAGE
-========================= */
-
-function setLanguage(language){
-
-    document.querySelectorAll("[data-en]").forEach(function(element){
-
-        if(language === "bn"){
-
-            element.textContent =
-                element.getAttribute("data-bn");
-
-        }else{
-
-            element.textContent =
-                element.getAttribute("data-en");
-
-        }
-
-    });
-
-    const bnBtn = document.getElementById("bnBtn");
-    const enBtn = document.getElementById("enBtn");
-
-    if(language === "bn"){
-
-        bnBtn.style.background = "#2563eb";
-        bnBtn.style.color = "white";
-
-        enBtn.style.background = "white";
-        enBtn.style.color = "#2563eb";
-
-    }else{
-
-        enBtn.style.background = "#2563eb";
-        enBtn.style.color = "white";
-
-        bnBtn.style.background = "white";
-        bnBtn.style.color = "#2563eb";
-
-    }
-
-    localStorage.setItem("siteLanguage",language);
-}
-
-
-/* =========================
-   LOAD SAVED LANGUAGE
-========================= */
+/* =====================================================
+   PAGE LOAD
+===================================================== */
 
 window.addEventListener("DOMContentLoaded",function(){
 
-    const savedLanguage =
-        localStorage.getItem("siteLanguage") || "en";
-
-    setLanguage(savedLanguage);
+    setLanguage(language);
 
 });
 
 </script>
+
+</body>
+</html>
