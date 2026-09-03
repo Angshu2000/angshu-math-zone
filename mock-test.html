@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mock Test - Angshu Math Zone</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#222;
+}
+
+/* HEADER */
+
+header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    text-align:center;
+    padding:28px 15px;
+}
+
+header h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+header p{
+    font-size:14px;
+}
+
+/* LANGUAGE */
+
+.language{
+    background:white;
+    text-align:right;
+    padding:10px 15px;
+    border-bottom:1px solid #ddd;
+}
+
+.language button{
+    padding:7px 14px;
+    border:1px solid #2563eb;
+    border-radius:6px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+#bnBtn{
+    background:white;
+    color:#2563eb;
+}
+
+#enBtn{
+    background:#2563eb;
+    color:white;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:25px 15px;
+}
+
+/* BACK BUTTON */
+
+.back{
+    display:inline-block;
+    margin-bottom:20px;
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* TITLE */
+
+.page-title{
+    background:white;
+    padding:25px;
+    text-align:center;
+    border-radius:15px;
+    margin-bottom:25px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.page-title h2{
+    color:#1e3a8a;
+    margin-bottom:8px;
+}
+
+.page-title p{
+    color:#666;
+}
+
+/* TEST GRID */
+
+.test-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+}
+
+/* TEST CARD */
+
+.test-card{
+    background:white;
+    min-height:220px;
+    padding:25px 18px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    transition:.3s;
+}
+
+.test-card:hover{
+    transform:translateY(-5px);
+}
+
+.test-icon{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.test-card h3{
+    color:#2563eb;
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.test-card p{
+    color:#666;
+    font-size:14px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+/* BUTTON */
+
+.start-btn{
+    display:inline-block;
+    padding:10px 20px;
+    background:#2563eb;
+    color:white;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+/* FOOTER */
+
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+    margin-top:30px;
+}
+
+footer p{
+    margin:5px;
+    font-size:14px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:25px;
+    }
+
+    .test-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .test-card{
+        min-height:200px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- LANGUAGE SWITCHER -->
+
+<div class="language">
+
+    <button onclick="setLanguage('bn')" id="bnBtn">
+        বাংলা
+    </button>
+
+    <button onclick="setLanguage('en')" id="enBtn">
+        English
+    </button>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <h1>📝 Angshu Math Zone</h1>
+
+    <p
+    data-en="Mock Test Series"
+    data-bn="মক টেস্ট সিরিজ">
+        Mock Test Series
+    </p>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- BACK -->
+
+<a href="index.html"
+   class="back"
+   data-en="← Back to Home"
+   data-bn="← হোমে ফিরে যান">
+
+    ← Back to Home
+
+</a>
+
+
+<!-- PAGE TITLE -->
+
+<div class="page-title">
+
+    <h2
+    data-en="📝 Select Mock Test"
+    data-bn="📝 মক টেস্ট নির্বাচন করুন">
+
+        📝 Select Mock Test
+
+    </h2>
+
+    <p
+    data-en="Choose your examination category and start practicing."
+    data-bn="আপনার পরীক্ষার বিভাগ নির্বাচন করে অনুশীলন শুরু করুন।">
+
+        Choose your examination category and start practicing.
+
+    </p>
+
+</div>
+
+
+<!-- TEST CARDS -->
+
+<div class="test-grid">
+
+
+    <!-- SSC -->
+
+    <a href="#"
+       style="text-decoration:none;color:inherit;">
+
+        <div class="test-card">
+
+            <div class="test-icon">
+                🏆
+            </div>
+
+            <h3>SSC</h3>
+
+            <p
+            data-en="SSC mock tests and practice questions."
+            data-bn="SSC মক টেস্ট ও অনুশীলনী প্রশ্ন।">
+
+                SSC mock tests and practice questions.
+
+            </p>
+
+            <span class="start-btn"
+            data-en="Start Test →"
+            data-bn="টেস্ট শুরু করুন →">
+
+                Start Test →
+
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <!-- RAILWAY -->
+
+    <a href="#"
+       style="text-decoration:none;color:inherit;">
+
+        <div class="test-card">
+
+            <div class="test-icon">
+                🚆
+            </div>
+
+            <h3>Railway</h3>
+
+            <p
+            data-en="Railway recruitment mock tests and practice."
+            data-bn="রেলওয়ে নিয়োগ পরীক্ষার মক টেস্ট ও অনুশীলন।">
+
+                Railway recruitment mock tests and practice.
+
+            </p>
+
+            <span class="start-btn"
+            data-en="Start Test →"
+            data-bn="টেস্ট শুরু করুন →">
+
+                Start Test →
+
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <!-- BANKING -->
+
+    <a href="#"
+       style="text-decoration:none;color:inherit;">
+
+        <div class="test-card">
+
+            <div class="test-icon">
+                🏦
+            </div>
+
+            <h3>Banking</h3>
+
+            <p
+            data-en="Banking examination mock tests and practice."
+            data-bn="ব্যাংকিং পরীক্ষার মক টেস্ট ও অনুশীলন।">
+
+                Banking examination mock tests and practice.
+
+            </p>
+
+            <span class="start-btn"
+            data-en="Start Test →"
+            data-bn="টেস্ট শুরু করুন →">
+
+                Start Test →
+
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <!-- POLICE -->
+
+    <a href="#"
+       style="text-decoration:none;color:inherit;">
+
+        <div class="test-card">
+
+            <div class="test-icon">
+                👮
+            </div>
+
+            <h3>Police</h3>
+
+            <p
+            data-en="Police recruitment mock tests and practice."
+            data-bn="পুলিশ নিয়োগ পরীক্ষার মক টেস্ট ও অনুশীলন।">
+
+                Police recruitment mock tests and practice.
+
+            </p>
+
+            <span class="start-btn"
+            data-en="Start Test →"
+            data-bn="টেস্ট শুরু করুন →">
+
+                Start Test →
+
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <!-- DEFENCE -->
+
+    <a href="#"
+       style="text-decoration:none;color:inherit;">
+
+        <div class="test-card">
+
+            <div class="test-icon">
+                🪖
+            </div>
+
+            <h3>Defence</h3>
+
+            <p
+            data-en="Defence examination mock tests and practice."
+            data-bn="ডিফেন্স পরীক্ষার মক টেস্ট ও অনুশীলন।">
+
+                Defence examination mock tests and practice.
+
+            </p>
+
+            <span class="start-btn"
+            data-en="Start Test →"
+            data-bn="টেস্ট শুরু করুন →">
+
+                Start Test →
+
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <!-- OTHER -->
+
+    <a href="#"
+       style="text-decoration:none;color:inherit;">
+
+        <div class="test-card">
+
+            <div class="test-icon">
+                📚
+            </div>
+
+            <h3
+            data-en="Others"
+            data-bn="অন্যান্য">
+
+                Others
+
+            </h3>
+
+            <p
+            data-en="Other competitive examination mock tests."
+            data-bn="অন্যান্য প্রতিযোগিতামূলক পরীক্ষার মক টেস্ট।">
+
+                Other competitive examination mock tests.
+
+            </p>
+
+            <span class="start-btn"
+            data-en="Start Test →"
+            data-bn="টেস্ট শুরু করুন →">
+
+                Start Test →
+
+            </span>
+
+        </div>
+
+    </a>
+
+
+</div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>© 2026 Angshu Math Zone</p>
+
+    <p
+    data-en="Learn Mathematics • Prepare Better • Achieve More"
+    data-bn="গণিত শিখুন • ভালোভাবে প্রস্তুতি নিন • সাফল্য অর্জন করুন">
+
+        Learn Mathematics • Prepare Better • Achieve More
+
+    </p>
+
+</footer>
+
+
+<!-- LANGUAGE SCRIPT -->
+
+<script>
+
+function setLanguage(language){
+
+    document.querySelectorAll("[data-en]").forEach(function(element){
+
+        if(language === "bn"){
+
+            element.textContent =
+                element.getAttribute("data-bn");
+
+        }else{
+
+            element.textContent =
+                element.getAttribute("data-en");
+
+        }
+
+    });
+
+
+    const bnBtn =
+        document.getElementById("bnBtn");
+
+    const enBtn =
+        document.getElementById("enBtn");
+
+
+    if(language === "bn"){
+
+        bnBtn.style.background="#2563eb";
+        bnBtn.style.color="white";
+
+        enBtn.style.background="white";
+        enBtn.style.color="#2563eb";
+
+    }else{
+
+        enBtn.style.background="#2563eb";
+        enBtn.style.color="white";
+
+        bnBtn.style.background="white";
+        bnBtn.style.color="#2563eb";
+
+    }
+
+
+    localStorage.setItem(
+        "siteLanguage",
+        language
+    );
+
+}
+
+
+window.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        const savedLanguage =
+            localStorage.getItem("siteLanguage") || "en";
+
+        setLanguage(savedLanguage);
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
