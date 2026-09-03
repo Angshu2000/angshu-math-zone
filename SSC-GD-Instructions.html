@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SSC GD Constable 2024 Full Test - 01 — Instructions</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f7f9;color:#222;font-family:Arial,Helvetica,sans-serif}
+.header{height:58px;background:#fff;border-bottom:1px solid #ddd;display:flex;align-items:center;padding:0 24px;gap:22px;position:sticky;top:0;z-index:5}
+.logo{font-size:25px;font-weight:800;color:#12a9c7}.testname{font-size:17px;color:#444}
+.wrap{max-width:1120px;margin:0 auto;background:#fff;min-height:calc(100vh - 58px);padding:34px 42px 95px}
+h1{text-align:center;font-size:34px;margin:20px 0 28px} .meta{display:flex;justify-content:space-between;font-size:17px;margin-bottom:28px}
+h2{font-size:20px;margin:25px 0 12px}.rules{font-size:17px;line-height:1.8}.rules li{margin:8px 0}
+.note{color:#d9534f;font-size:16px;margin:20px 0}
+.lang{padding:16px 0;border-top:1px solid #eee;border-bottom:1px solid #eee;margin-top:24px}
+select{font-size:16px;padding:7px}.declare{font-weight:700;margin:22px 0;font-size:17px}
+.bottom{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #ddd;padding:12px 24px;display:flex;justify-content:space-between}
+button{border:0;border-radius:4px;padding:13px 24px;font-size:16px;cursor:pointer;background:#b7d9e8;color:#333}
+.ready{background:#22bfd5;color:#fff;font-weight:700}.ready:disabled{opacity:.45;cursor:not-allowed}
+.back{color:#1682bd;text-decoration:none}
+@media(max-width:650px){.wrap{padding:20px 16px 90px}h1{font-size:25px}.meta{font-size:14px}.rules{font-size:15px}.header{padding:0 12px}.testname{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">▰ Angshu Math Zone</div>
+  <div class="testname">SSC GD Constable 2024 Full Test - 01</div>
+</div>
+<main class="wrap">
+<a class="back" href="ssc-gd-tests.html">← Go to Tests</a>
+<h1>SSC GD Constable 2024 Full Test - 01</h1>
+<div class="meta"><b>Duration: 60 Mins</b><b>Maximum Marks: 160</b></div>
+<h2>General Instructions</h2>
+<ol class="rules">
+<li>The test contains <b>4 sections having 80 questions</b>.</li>
+<li>Each question has <b>4 options</b>, out of which only one is correct.</li>
+<li>You have to finish the test in <b>60 minutes</b>.</li>
+<li>You will be awarded <b>2 marks</b> for each correct answer and <b>0.25 mark</b> will be deducted for each wrong answer.</li>
+</ol>
+<div class="lang"><b>Choose your default language:</b>
+<select><option>Bengali</option><option>English</option><option>Hindi</option></select>
+<p class="note">Please note all questions will appear in your default language. This language can be changed for a particular question later on.</p>
+</div>
+<div class="declare">
+<label><input id="agree" type="checkbox"> I have understood and agree to all the instructions.</label>
+</div>
+</main>
+<div class="bottom">
+<button onclick="location.href='ssc-gd-tests.html'">Previous</button>
+<button id="ready" class="ready" disabled onclick="location.href='ssc-gd-shift1.html'">Next</button>
+</div>
+<script>
+document.getElementById('agree').addEventListener('change',function(){
+ document.getElementById('ready').disabled=!this.checked;
+});
+</script>
+</body>
+</html>
