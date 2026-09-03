@@ -66,4 +66,277 @@ header p{
     background:#2563eb;
     color:white;
 }
-    
+
+/* CONTAINER */
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:25px 15px;
+}
+
+/* BACK */
+
+.back{
+    display:inline-block;
+    margin-bottom:20px;
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* TITLE */
+
+.page-title{
+    background:white;
+    padding:25px;
+    text-align:center;
+    border-radius:15px;
+    margin-bottom:25px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.page-title h2{
+    color:#1e3a8a;
+    margin-bottom:8px;
+}
+
+.page-title p{
+    color:#666;
+}
+
+/* TEST GRID */
+
+.test-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+/* TEST CARD */
+
+.test-card{
+    background:white;
+    min-height:285px;
+    padding:22px 15px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    transition:.3s;
+}
+
+.test-card:hover{
+    transform:translateY(-5px);
+}
+
+/* LOGO */
+
+.test-logo{
+    width:105px;
+    height:105px;
+    object-fit:contain;
+    margin-bottom:15px;
+    display:block;
+}
+
+/* OTHER */
+
+.test-icon{
+    width:105px;
+    height:105px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:70px;
+    margin-bottom:15px;
+}
+
+.test-card h3{
+    color:#2563eb;
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.test-card p{
+    color:#666;
+    font-size:14px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+/* BUTTON */
+
+.start-btn{
+    display:inline-block;
+    padding:10px 20px;
+    background:#2563eb;
+    color:white;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+/* FOOTER */
+
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+    margin-top:30px;
+}
+
+footer p{
+    margin:5px;
+    font-size:14px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:25px;
+    }
+
+    .test-grid{
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+    }
+
+    .test-card{
+        min-height:255px;
+        padding:18px 8px;
+    }
+
+    .test-logo{
+        width:80px;
+        height:80px;
+    }
+
+    .test-icon{
+        width:80px;
+        height:80px;
+        font-size:55px;
+    }
+
+    .test-card h3{
+        font-size:17px;
+    }
+
+    .test-card p{
+        font-size:12px;
+    }
+
+    .start-btn{
+        font-size:12px;
+        padding:8px 12px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- LANGUAGE SWITCHER -->
+
+<div class="language">
+
+    <button onclick="setLanguage('bn')" id="bnBtn">
+        বাংলা
+    </button>
+
+    <button onclick="setLanguage('en')" id="enBtn">
+        English
+    </button>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <h1>📝 Angshu Math Zone</h1>
+
+    <p
+    data-en="Mock Test Series"
+    data-bn="মক টেস্ট সিরিজ">
+
+        Mock Test Series
+
+    </p>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- BACK -->
+
+<a href="index.html"
+   class="back"
+   data-en="← Back to Home"
+   data-bn="← হোমে ফিরে যান">
+
+    ← Back to Home
+
+</a>
+
+
+<!-- PAGE TITLE -->
+
+<div class="page-title">
+
+    <h2
+    data-en="📝 Select Mock Test"
+    data-bn="📝 মক টেস্ট নির্বাচন করুন">
+
+        📝 Select Mock Test
+
+    </h2>
+
+    <p
+    data-en="Choose your examination category and start practicing."
+    data-bn="আপনার পরীক্ষার বিভাগ নির্বাচন করে অনুশীলন শুরু করুন।">
+
+        Choose your examination category and start practicing.
+
+    </p>
+
+</div>
+
+
+<!-- TEST CARDS -->
+
+<div class="test-grid">
+
+
+<!-- SSC -->
+
+<a href="#"
+   style="text-decoration:none;color:inherit;">
+
+<div class="test-card">
+
+<img
+src="data:image/jpeg;base64,PUT_SSC_LOGO_CODE_HERE"
+alt="SSC Logo"
+class="test-logo">
+
+<h3>SSC</h3>
+
+<p
+data-en="SSC mock tests and practice questions."
+data-b
