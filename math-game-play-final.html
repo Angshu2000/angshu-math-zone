@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Math Challenge - Angshu Math Zone</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#eef4ff,#fff7ed,#f5f3ff);color:#172033}
+header{background:linear-gradient(135deg,#2563eb,#7c3aed,#db2777);color:#fff;text-align:center;padding:24px 12px}
+header h1{margin:0 0 5px;font-size:27px}header p{margin:0;font-size:14px}
+main{max-width:760px;margin:auto;padding:15px 10px 30px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px}
+.back{color:#2563eb;text-decoration:none;font-weight:bold}
+.mode{background:#ede9fe;color:#5b21b6;padding:6px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+.card{background:#fff;border-radius:20px;padding:16px;box-shadow:0 7px 25px #00000012}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.stat{border-radius:12px;padding:10px;text-align:center;background:#eef4ff}
+.stat:nth-child(2){background:#ecfdf5}.stat:nth-child(3){background:#fff7ed}.stat:nth-child(4){background:#fdf2f8}
+.stat small{display:block;color:#64748b;margin-bottom:3px}.stat b{font-size:20px}
+.question{background:linear-gradient(135deg,#f8fafc,#eef2ff);border-radius:16px;padding:28px 12px;text-align:center;border:2px dashed #c7d2fe}
+#question{font-size:36px;font-weight:800;color:#172554;word-break:break-word;margin-bottom:20px}
+input{width:100%;padding:15px;font-size:23px;text-align:center;border:2px solid #cbd5e1;border-radius:10px;outline:none}
+input:focus{border-color:#6366f1;box-shadow:0 0 0 3px #6366f122}
+button.submit{width:100%;border:0;border-radius:10px;padding:13px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:12px;background:linear-gradient(135deg,#16a34a,#059669);color:#fff}
+button.again{width:100%;border:0;border-radius:10px;padding:13px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:10px;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff}
+#message{text-align:center;min-height:26px;margin-top:9px;font-weight:bold}
+.info{text-align:center;color:#64748b;font-size:13px}
+@media(max-width:600px){
+ header h1{font-size:24px}.stats{grid-template-columns:repeat(2,1fr)}
+ #question{font-size:28px}.question{padding:22px 8px}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>🧮 Math Challenge</h1>
+<p>Calculate fast • Stay accurate • Beat your score!</p>
+</header>
+<main>
+<div class="topbar">
+<a class="back" href="math-game.html">← Change Mode</a>
+<div class="mode" id="mode">Addition • Easy</div>
+</div>
+<div class="card">
+<div class="stats">
+<div class="stat"><small>⏱️ Time</small><b id="time">240</b></div>
+<div class="stat"><small>🏆 Score</small><b id="score">0</b></div>
+<div class="stat"><small>❌ Wrong</small><b id="wrong">0</b></div>
+<div class="stat"><small>🎯 Accuracy</small><b id="accuracy">0%</b></div>
+</div>
+<div class="question">
+<div id="question">Get Ready!</div>
+<input id="answer" type="number" inputmode="numeric" placeholder="Your answer" autocomplete="off" disabled>
+</div>
+<button class="submit" id="start">▶ Start Game</button>
+<button class="again" id="again" style="display:none">🔄 Play Again</button>
+<div id="message"></div>
+<p class="info">⏱️ You have 4 minutes (240 seconds). Press Enter after each answer.</p>
+</div>
+</main>
+<script>
+const params=new URLSearchParams(location.search);
+let type=params.get("type")||"addition";
+let level=params.get("level")||"easy";
+let score=0,wrong=0,total=0,time=240,correctAnswer=0,timer=null,running=false;
+const $=id=>document.getElementById(id);
+const typeNames={addition:"Addition",subtraction:"Subtraction",multiplication:"Multiplication",division:"Division",mixed:"Mixed",square:"Square",cube:"Cube",sqrt:"Square Root",cbrt:"Cube Root"};
+$("mode").textContent=typeNames[type]+" • "+level[0].toUpperCase()+level.slice(1);
+
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+function exactDiv(){
+ let divisor,answer;
+ if(level==="easy"){divisor=rnd(2,10);answer=rnd(1,10)}
+ else if(level==="medium"){divisor=rnd(2,20);answer=rnd(2,20)}
+ else{divisor=rnd(2,40);answer=rnd(5,50)}
+ return {a:divisor*answer,b:divisor,answer:answer};
+}
+function makeBasic(op){
+ let count=2,min=1,max=30;
+ if(level==="medium"){count=3;min=10;max=100}
+ if(level==="hard"){count=4;min=10;max=150}
+ let nums=Array.from({length:count},()=>rnd(min,max));
+ if(op==="+")correctAnswer=nums.reduce((x,y)=>x+y,0);
+ else{
+   nums.sort((a,b)=>b-a);
+   let rest=nums.slice(1).reduce((x,y)=>x+y,0);
+   if(nums[0]<=rest) nums[0]=rest+rnd(1,50);
+   correctAnswer=nums[0]-nums.slice(1).reduce((x,y)=>x+y,0);
+ }
+ $("question").textContent=nums.join(op==="+"?" + ":" - ")+" = ?";
+}
+function newQuestion(){
+ let a,b,n,d,e;
+ if(type==="addition"){makeBasic("+");}
+ else if(type==="subtraction"){makeBasic("-");}
+ else if(type==="multiplication"){
+   if(level==="easy"){a=rnd(1,12);b=rnd(1,12)}
+   else if(level==="medium"){a=rnd(10,50);b=rnd(2,20)}
+   else{a=rnd(20,100);b=rnd(10,50)}
+   correctAnswer=a*b;$("question").textContent=`${a} × ${b} = ?`;
+ }
+ else if(type==="division"){
+   let q=exactDiv();correctAnswer=q.answer;$("question").textContent=`${q.a} ÷ ${q.b} = ?`;
+ }
+ else if(type==="square"){
+   n=level==="easy"?rnd(1,30):level==="medium"?rnd(31,80):rnd(81,120);
+   correctAnswer=n*n;$("question").textContent=`${n}² = ?`;
+ }
+ else if(type==="cube"){
+   n=level==="easy"?rnd(1,10):level==="medium"?rnd(11,20):rnd(21,30);
+   correctAnswer=n*n*n;$("question").textContent=`${n}³ = ?`;
+ }
+ else if(type==="sqrt"){
+   n=level==="easy"?rnd(1,5):level==="medium"?rnd(6,9):rnd(10,10);
+   correctAnswer=n;$("question").textContent=`√${n*n} = ?`;
+ }
+ else if(type==="cbrt"){
+   n=level==="easy"?rnd(1,10):level==="medium"?rnd(11,20):rnd(21,30);
+   correctAnswer=n;$("question").textContent=`∛${n*n*n} = ?`;
+ }
+ else if(type==="mixed"){
+   if(level==="easy"){
+     a=rnd(1,20);b=rnd(1,15);d=rnd(1,10);e=rnd(1,10);
+     correctAnswer=a+b-d*e;$("question").textContent=`${a} + ${b} - ${d} × ${e} = ?`;
+   }else if(level==="medium"){
+     a=rnd(10,40);b=rnd(2,15);n=rnd(2,10);d=rnd(1,10);
+     correctAnswer=a+b*n-d;$("question").textContent=`${a} + ${b} × ${n} - ${d} = ?`;
+   }else{
+     a=rnd(10,50);b=rnd(2,15);n=rnd(2,10);d=rnd(2,8);e=rnd(1,10);
+     correctAnswer=a+b*n-d*e;$("question").textContent=`${a} + ${b} × ${n} - ${d} × ${e} = ?`;
+   }
+ }
+ $("answer").value="";$("answer").focus();
+}
+function updateStats(){
+ $("score").textContent=score;$("wrong").textContent=wrong;
+ $("accuracy").textContent=total?Math.round(score/total*100)+"%":"0%";
+}
+function startGame(){
+ clearInterval(timer);score=0;wrong=0;total=0;time=240;running=true;
+ $("time").textContent=240;updateStats();$("message").textContent="";
+ $("start").style.display="none";$("again").style.display="none";$("answer").disabled=false;
+ newQuestion();
+ timer=setInterval(()=>{time--;$("time").textContent=time;if(time<=0)endGame()},1000);
+}
+function check(){
+ if(!running||$("answer").value==="")return;
+ total++;
+ if(Number($("answer").value)===correctAnswer){score++;$("message").textContent="✅ Correct! Great job!"}
+ else{wrong++;$("message").textContent="❌ Wrong! Try the next one!"}
+ updateStats();newQuestion();
+}
+function endGame(){
+ clearInterval(timer);running=false;$("answer").disabled=true;
+ $("question").textContent=`Game Over! 🎉`;
+ $("message").textContent=`Correct: ${score} | Wrong: ${wrong} | Accuracy: ${total?Math.round(score/total*100):0}%`;
+ $("again").style.display="block";
+}
+$("start").onclick=startGame;$("again").onclick=startGame;
+$("answer").addEventListener("keydown",e=>{if(e.key==="Enter")check()});
+</script>
+</body>
+</html>
