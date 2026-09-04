@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Math Calculation Game - Angshu Math Zone</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#eef4ff,#fff7ed,#f5f3ff);color:#172033}
+header{background:linear-gradient(135deg,#2563eb,#7c3aed,#db2777);color:#fff;text-align:center;padding:28px 15px;box-shadow:0 5px 18px #0002}
+header h1{margin:0 0 7px;font-size:30px}header p{margin:0;font-size:15px}
+main{max-width:850px;margin:auto;padding:18px 12px 35px}
+.back{display:inline-block;margin-bottom:14px;color:#2563eb;text-decoration:none;font-weight:bold}
+.card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 7px 25px #00000012;border:1px solid #e5e7eb}
+h2{text-align:center;color:#312e81;margin:2px 0 15px}
+.section-title{text-align:center;font-weight:800;color:#475569;margin:18px 0 10px}
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.type{border:0;background:#eef2ff;color:#3730a3;padding:12px 7px;border-radius:12px;font-weight:800;cursor:pointer;font-size:14px}
+.type:nth-child(2n){background:#ecfeff;color:#0e7490}
+.type:nth-child(3n){background:#fff1f2;color:#be123c}
+.type.active{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;box-shadow:0 4px 12px #4f46e566;transform:translateY(-1px)}
+.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.level{border:1px solid #d8deea;background:#f8fafc;padding:11px;border-radius:10px;font-weight:bold;cursor:pointer}
+.level.active{background:#16a34a;color:#fff;border-color:#16a34a}
+.start{width:100%;border:0;border-radius:10px;padding:14px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:18px;background:linear-gradient(135deg,#16a34a,#059669);color:#fff;box-shadow:0 5px 14px #05966944}
+.note{text-align:center;color:#64748b;font-size:13px;margin:12px 0 0}
+@media(max-width:600px){
+ header{padding:24px 10px}header h1{font-size:25px}
+ main{padding:14px 8px 28px}.card{padding:12px;border-radius:16px}
+ .types{grid-template-columns:repeat(2,1fr);gap:7px}.type{padding:11px 5px;font-size:12px}
+ .levels{gap:7px}.level{padding:10px 5px;font-size:13px}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>🎮 Math Calculation Game</h1>
+<p>Challenge your speed • Accuracy • Calculation Skills</p>
+</header>
+<main>
+<a class="back" href="index.html">← Back to Home</a>
+<div class="card">
+<h2>⚡ Fast Math Challenge</h2>
+<div class="section-title">Choose Calculation Type</div>
+<div class="types">
+<button class="type active" data-type="addition">➕ Addition</button>
+<button class="type" data-type="subtraction">➖ Subtraction</button>
+<button class="type" data-type="multiplication">✖️ Multiplication</button>
+<button class="type" data-type="division">➗ Division</button>
+<button class="type" data-type="mixed">🔀 Mixed</button>
+<button class="type" data-type="square">² Square</button>
+<button class="type" data-type="cube">³ Cube</button>
+<button class="type" data-type="sqrt">√ Square Root</button>
+<button class="type" data-type="cbrt">∛ Cube Root</button>
+</div>
+<div class="section-title">Choose Difficulty</div>
+<div class="levels">
+<button class="level active" data-level="easy">🟢 Easy</button>
+<button class="level" data-level="medium">🟡 Medium</button>
+<button class="level" data-level="hard">🔴 Hard</button>
+</div>
+<button class="start" id="start">▶ Start Game</button>
+<p class="note">⏱️ Each game has 4 minutes (240 seconds).</p>
+</div>
+</main>
+<script>
+let type="addition",level="easy";
+document.querySelectorAll(".type").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll(".type").forEach(x=>x.classList.remove("active"));
+ b.classList.add("active");type=b.dataset.type;
+});
+document.querySelectorAll(".level").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll(".level").forEach(x=>x.classList.remove("active"));
+ b.classList.add("active");level=b.dataset.level;
+});
+document.getElementById("start").onclick=()=>{
+ location.href="math-game-play.html?type="+encodeURIComponent(type)+"&level="+encodeURIComponent(level);
+};
+</script>
+</body>
+</html>
