@@ -3,509 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Exam Notifications - Angshu Math Zone</title>
-
+<title>Exam Notifications | Angshu Math Zone</title>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#f3f6fb;
-    color:#222;
-}
-
-header{
-    background:linear-gradient(135deg,#2563eb,#7c3aed);
-    color:white;
-    text-align:center;
-    padding:28px 15px;
-}
-
-header h1{
-    font-size:30px;
-    margin-bottom:8px;
-}
-
-header p{
-    font-size:14px;
-}
-
-nav{
-    background:white;
-    padding:14px;
-    text-align:center;
-    box-shadow:0 2px 8px rgba(0,0,0,.12);
-}
-
-nav a{
-    text-decoration:none;
-    color:#2563eb;
-    font-weight:bold;
-    margin:0 8px;
-    font-size:14px;
-}
-
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:25px 15px;
-}
-
-.page-title{
-    background:white;
-    padding:22px;
-    text-align:center;
-    border-radius:12px;
-    margin-bottom:25px;
-    box-shadow:0 3px 10px rgba(0,0,0,.08);
-}
-
-.page-title h2{
-    color:#1e3a8a;
-    margin-bottom:8px;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
-}
-
-.box{
-    background:white;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 4px 12px rgba(0,0,0,.09);
-}
-
-.box-title{
-    color:white;
-    padding:15px;
-    font-size:19px;
-    font-weight:bold;
-}
-
-.new{
-    background:#16a34a;
-}
-
-.latest{
-    background:#2563eb;
-}
-
-.form{
-    background:#f97316;
-}
-
-.admit{
-    background:#7c3aed;
-}
-
-.result{
-    background:#dc2626;
-}
-
-.answer{
-    background:#0891b2;
-}
-
-.box-content{
-    padding:18px;
-}
-
-.notice{
-    padding:12px 5px;
-    border-bottom:1px solid #eee;
-    line-height:1.5;
-    font-size:14px;
-}
-
-.notice:last-child{
-    border-bottom:none;
-}
-
-.notice strong{
-    color:#1e3a8a;
-}
-
-.view{
-    display:block;
-    text-align:center;
-    margin-top:15px;
-    background:#111827;
-    color:white;
-    text-decoration:none;
-    padding:10px;
-    border-radius:7px;
-    font-weight:bold;
-}
-
-.view:hover{
-    opacity:.85;
-}
-
-footer{
-    background:#111827;
-    color:white;
-    text-align:center;
-    padding:25px 15px;
-    margin-top:30px;
-}
-
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#eef4ff,#fff7ed,#f5f3ff);color:#172033}
+header{background:linear-gradient(135deg,#2563eb,#7c3aed,#db2777);color:#fff;text-align:center;padding:28px 15px}
+header h1{margin:0 0 7px;font-size:30px}
+header p{margin:0;font-size:15px}
+main{max-width:1000px;margin:auto;padding:16px 12px 35px}
+.back{display:inline-block;margin-bottom:14px;color:#2563eb;text-decoration:none;font-weight:700;font-size:18px}
+.box{background:#fff;border-radius:22px;padding:22px;box-shadow:0 7px 25px #00000012;border:1px solid #e5e7eb}
+.title{text-align:center;color:#173b78;margin:2px 0 7px;font-size:30px}
+.title:after{content:"";display:block;width:68px;height:4px;border-radius:3px;background:#2563eb;margin:16px auto 12px}
+.sub{text-align:center;color:#64748b;margin:0 0 22px;font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.card{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #dfe7f2;border-radius:18px;padding:22px;text-align:center;box-shadow:0 5px 15px #0000000d;transition:.2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 9px 22px #00000018}
+.icon{width:92px;height:92px;margin:0 auto 15px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:50px}
+.ssc .icon{background:#fff1f2}
+.rail .icon{background:#eff6ff}
+.card h2{margin:6px 0 8px;color:#12479b;font-size:25px}
+.card p{margin:0 0 18px;color:#64748b;font-size:15px;line-height:1.5}
+.btn{display:block;padding:13px 18px;border-radius:10px;color:#fff;font-weight:700;font-size:16px}
+.ssc .btn{background:linear-gradient(135deg,#2563eb,#4f46e5)}
+.rail .btn{background:linear-gradient(135deg,#dc2626,#b91c1c)}
+.note{margin-top:20px;text-align:center;background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;border-radius:12px;padding:13px;font-size:14px}
+footer{background:#111827;color:#fff;text-align:center;padding:24px 10px}
 @media(max-width:600px){
-    header h1{
-        font-size:25px;
-    }
-
-    nav a{
-        display:inline-block;
-        margin:5px;
-    }
+header{padding:24px 10px}header h1{font-size:25px}
+main{padding:13px 8px 28px}.box{padding:12px}
+.grid{gap:10px}.card{padding:14px 9px;border-radius:15px}
+.icon{width:65px;height:65px;border-radius:16px;font-size:36px;margin-bottom:9px}
+.card h2{font-size:18px}.card p{font-size:12px;min-height:55px}
+.btn{padding:9px 5px;font-size:12px}.title{font-size:23px}.sub{font-size:13px}.back{font-size:16px}
 }
 </style>
 </head>
 <body>
-
-<!-- LANGUAGE SWITCHER -->
-<div style="
-    text-align:right;
-    padding:10px 15px;
-    background:white;
-    border-bottom:1px solid #ddd;
-">
-
-    <button onclick="setLanguage('bn')" id="bnBtn"
-        style="
-            padding:7px 14px;
-            border:1px solid #2563eb;
-            border-radius:6px;
-            background:white;
-            color:#2563eb;
-            font-weight:bold;
-            cursor:pointer;
-        ">
-        বাংলা
-    </button>
-
-    <button onclick="setLanguage('en')" id="enBtn"
-        style="
-            padding:7px 14px;
-            border:1px solid #2563eb;
-            border-radius:6px;
-            background:#2563eb;
-            color:white;
-            font-weight:bold;
-            cursor:pointer;
-        ">
-        English
-    </button>
-
-</div>
-
 <header>
-    <h1>📐 Angshu Math Zone</h1>
-    <p>Competitive Exam Updates • Mathematics • Notes • Tricks</p>
+<h1>📢 Exam Notifications</h1>
+<p>SSC • Railway • Important Exam Updates</p>
 </header>
-
-<nav>
-    <a href="index.html">Home</a>
-    <a href="notifications.html">Notifications</a>
-    <a href="#admit">Admit Card</a>
-    <a href="#result">Results</a>
-</nav>
-
-<div class="container">
-
-    <div class="page-title">
-        <h2>📢 Exam Notifications</h2>
-        <p>Latest Competitive Exam Updates and Important Information</p>
-    </div>
-
-    <div class="grid">
-
-        <!-- NEW UPDATES -->
-        <div class="box">
-            <div class="box-title new">
-    🆕 <span
-        data-en="New Updates"
-        data-bn="নতুন আপডেট">
-        New Updates
-    </span>
-            </div>
-
-            <div class="box-content">
-
-                <div class="notice"
-    data-en="🔥 New recruitment updates will be added here."
-    data-bn="🔥 নতুন নিয়োগের আপডেট এখানে দেওয়া হবে।">
-    🔥 New recruitment updates will be added here.
-                </div>
-
-                <div class="notice"
-    data-en="📢 Important exam announcements."
-    data-bn="📢 গুরুত্বপূর্ণ পরীক্ষার বিজ্ঞপ্তি।">
-    📢 Important exam announcements.
-                </div>
-
-                <div class="notice"
-    data-en="📅 New examination dates and updates."
-    data-bn="📅 নতুন পরীক্ষার তারিখ ও আপডেট।">
-    📅 New examination dates and updates.
-                </div>
-                <a href="gds.html" style="text-decoration:none; color:inherit;">
-
-    <div class="notice">
-
-        📮 <strong
-        data-en="India Post GDS Online Form 2026"
-        data-bn="ইন্ডিয়া পোস্ট GDS অনলাইন ফর্ম ২০২৬">
-        India Post GDS Online Form 2026
-        </strong>
-
-        <br>
-
-        <span
-        data-en="Vacancy, Age Limit, Qualification, Important Dates & Apply"
-        data-bn="শূন্যপদ, বয়সসীমা, যোগ্যতা, গুরুত্বপূর্ণ তারিখ ও আবেদন">
-        Vacancy, Age Limit, Qualification, Important Dates & Apply
-        </span>
-
-    </div>
-
-                </a>
-
-                <a class="view" href="notifications.html">
-                    View All Updates →
-                </a>
-
-            </div>
-        </div>
-
-
-        <!-- LATEST NOTIFICATIONS -->
-        <div class="box">
-            <div class="box-title latest">
-    🔔 <span
-        data-en="Latest Notifications"
-        data-bn="সর্বশেষ বিজ্ঞপ্তি">
-        Latest Notifications
-    </span>
-            </div>
-
-            <div class="box-content">
-
-                <div class="notice"
-    data-en="🟢 SSC – Latest notification updates."
-    data-bn="🟢 SSC – সর্বশেষ বিজ্ঞপ্তির আপডেট।">
-    🟢 SSC – Latest notification updates.
-                </div>
-
-                <div class="notice"
-    data-en="🔵 Railway – Recruitment updates."
-    data-bn="🔵 রেলওয়ে – নিয়োগের আপডেট।">
-    🔵 Railway – Recruitment updates.
-                </div>
-
-                <div class="notice"
-    data-en="🟠 Banking – New exam information."
-    data-bn="🟠 ব্যাংকিং – নতুন পরীক্ষার তথ্য।">
-    🟠 Banking – New exam information.
-                </div>
-
-                <a class="view" href="latest-notifications.html">
-                    View All Notifications →
-                </a>
-
-            </div>
-        </div>
-
-
-        
-
-
-        <!-- ADMIT CARD -->
-<div class="box" id="admit">
-
-    <div class="box-title admit">
-        🎫 <span
-            data-en="Admit Card"
-            data-bn="অ্যাডমিট কার্ড">
-            Admit Card
-        </span>
-    </div>
-
-    <div class="box-content">
-
-        <div class="notice"
-            data-en="🎫 Latest admit card updates."
-            data-bn="🎫 সর্বশেষ অ্যাডমিট কার্ডের আপডেট।">
-            🎫 Latest admit card updates.
-        </div>
-
-        <div class="notice"
-            data-en="🎫 Exam hall ticket information."
-            data-bn="🎫 পরীক্ষার হল টিকিট সংক্রান্ত তথ্য।">
-            🎫 Exam hall ticket information.
-        </div>
-
-        <div class="notice"
-            data-en="🎫 Download information."
-            data-bn="🎫 ডাউনলোড সংক্রান্ত তথ্য।">
-            🎫 Download information.
-        </div>
-
-        <a class="view" href="admit-card.html"
-            data-en="View All Admit Cards →"
-            data-bn="সব অ্যাডমিট কার্ড দেখুন →">
-            View All Admit Cards →
-        </a>
-
-    </div>
-
-</div>
-
-
-        <!-- RESULTS -->
-<div class="box" id="result">
-
-    <div class="box-title result">
-        🏆 <span
-            data-en="Exam Results"
-            data-bn="পরীক্ষার ফলাফল">
-            Exam Results
-        </span>
-    </div>
-
-    <div class="box-content">
-
-        <div class="notice"
-            data-en="🏆 Latest examination results."
-            data-bn="🏆 সর্বশেষ পরীক্ষার ফলাফল।">
-            🏆 Latest examination results.
-        </div>
-
-        <div class="notice"
-            data-en="🏆 Merit list and score information."
-            data-bn="🏆 মেধাতালিকা ও নম্বর সংক্রান্ত তথ্য।">
-            🏆 Merit list and score information.
-        </div>
-
-        <div class="notice"
-            data-en="🏆 Result checking information."
-            data-bn="🏆 ফলাফল দেখার সংক্রান্ত তথ্য।">
-            🏆 Result checking information.
-        </div>
-
-        <a class="view"
-            href="results.html"
-            data-en="View All Results →"
-            data-bn="সব ফলাফল দেখুন →">
-            View All Results →
-        </a>
-
-    </div>
-
-</div>
-
-
-        <!-- ANSWER KEY -->
+<main>
+<a class="back" href="index.html">← Back to Home</a>
 <div class="box">
-
-    <div class="box-title answer">
-        🔑 <span
-            data-en="Answer Key"
-            data-bn="উত্তরপত্র">
-            Answer Key
-        </span>
-    </div>
-
-    <div class="box-content">
-
-        <div class="notice"
-            data-en="🔑 Latest answer key updates."
-            data-bn="🔑 সর্বশেষ উত্তরপত্রের আপডেট।">
-            🔑 Latest answer key updates.
-        </div>
-
-        <div class="notice"
-            data-en="🔑 Question paper solutions."
-            data-bn="🔑 প্রশ্নপত্রের সমাধান।">
-            🔑 Question paper solutions.
-        </div>
-
-        <div class="notice"
-            data-en="🔑 Answer key objection information."
-            data-bn="🔑 উত্তরপত্র নিয়ে আপত্তি সংক্রান্ত তথ্য।">
-            🔑 Answer key objection information.
-        </div>
-
-        <a class="view"
-            href="answer-key.html"
-            data-en="View All Answer Keys →"
-            data-bn="সব উত্তরপত্র দেখুন →">
-            View All Answer Keys →
-        </a>
-
-    </div>
-
+<h2 class="title">Choose Notification</h2>
+<p class="sub">Select SSC or Railway to view the notification.</p>
+<div class="grid">
+<a class="card ssc" href="ssc-notification.html">
+<div class="icon">📋</div>
+<h2>1) SSC Notification</h2>
+<p>SSC examination calendar and important examination dates.</p>
+<span class="btn">📄 View SSC Notification →</span>
+</a>
+<a class="card rail" href="railway-notification.html">
+<div class="icon">🚆</div>
+<h2>2) Railway Notification</h2>
+<p>Railway recruitment calendar and important examination updates.</p>
+<span class="btn">📄 View Railway Notification →</span>
+</a>
 </div>
-    </div>
-
+<div class="note">💡 প্রয়োজনীয় notification বেছে নিয়ে PDF খুলে বিস্তারিত তথ্য দেখুন।</div>
 </div>
-
-<footer>
-    <p>© 2026 Angshu Math Zone</p>
-    <p>Learn Mathematics • Prepare Better • Achieve More</p>
-</footer>
-<script>
-function setLanguage(language) {
-
-    document.querySelectorAll("[data-en]").forEach(function(element) {
-
-        if (language === "bn") {
-            element.textContent = element.getAttribute("data-bn");
-        } else {
-            element.textContent = element.getAttribute("data-en");
-        }
-
-    });
-
-    const bnBtn = document.getElementById("bnBtn");
-    const enBtn = document.getElementById("enBtn");
-
-    if (language === "bn") {
-
-        bnBtn.style.background = "#2563eb";
-        bnBtn.style.color = "white";
-
-        enBtn.style.background = "white";
-        enBtn.style.color = "#2563eb";
-
-    } else {
-
-        enBtn.style.background = "#2563eb";
-        enBtn.style.color = "white";
-
-        bnBtn.style.background = "white";
-        bnBtn.style.color = "#2563eb";
-    }
-
-    localStorage.setItem("siteLanguage", language);
-}
-
-window.addEventListener("DOMContentLoaded", function() {
-
-    const savedLanguage =
-        localStorage.getItem("siteLanguage") || "en";
-
-    setLanguage(savedLanguage);
-
-});
-                </script>
+</main>
+<footer>© 2026 Angshu Math Zone</footer>
 </body>
 </html>
