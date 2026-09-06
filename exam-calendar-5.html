@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exam Calendar | Angshu Math Zone</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#eef4ff,#fff7ed,#f5f3ff);color:#172033}
+header{background:linear-gradient(135deg,#2563eb,#7c3aed,#db2777);color:#fff;text-align:center;padding:28px 15px}
+header h1{margin:0 0 7px;font-size:30px}
+header p{margin:0;font-size:15px}
+main{max-width:1000px;margin:auto;padding:16px 12px 35px}
+.back{display:inline-block;margin-bottom:14px;color:#2563eb;text-decoration:none;font-weight:700;font-size:18px}
+.card{background:#fff;border-radius:22px;padding:22px;box-shadow:0 7px 25px #00000012;border:1px solid #e5e7eb}
+.title{text-align:center;color:#173b78;margin:2px 0 7px;font-size:30px}
+.title:after{content:"";display:block;width:68px;height:4px;border-radius:3px;background:#2563eb;margin:16px auto 12px}
+.sub{text-align:center;color:#64748b;margin:0 0 22px;font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.exam{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #dfe7f2;border-radius:18px;padding:18px;text-align:center;transition:.2s;box-shadow:0 5px 15px #0000000d}
+.exam:hover{transform:translateY(-3px);box-shadow:0 9px 22px #00000018}
+.logoBox{height:270px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;background:transparent}
+.logoBox img{width:100%;height:100%;object-fit:contain;display:block}
+.exam h2{margin:6px 0 8px;color:#12479b;font-size:27px}
+.exam p{margin:0 0 18px;color:#64748b;font-size:17px;line-height:1.45}
+.btn{display:block;padding:13px 18px;border-radius:10px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;font-weight:700;font-size:17px}
+.exam:nth-child(2) .btn{background:linear-gradient(135deg,#dc2626,#b91c1c)}
+.note{margin-top:20px;text-align:center;background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;border-radius:12px;padding:13px;font-size:15px}
+footer{background:#111827;color:#fff;text-align:center;padding:24px 10px}
+footer p{margin:5px;font-size:14px}
+@media(max-width:600px){
+ header{padding:24px 10px}header h1{font-size:25px}
+ main{padding:13px 8px 28px}.card{padding:12px}
+ .grid{gap:10px}.exam{padding:12px 8px;border-radius:15px}
+ .logoBox{height:180px;margin-bottom:8px}
+ .exam h2{font-size:18px}.exam p{font-size:12px;min-height:52px}
+ .btn{width:100%;padding:9px 5px;font-size:12px}
+ .title{font-size:23px}.sub{font-size:13px}.back{font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>📅 Exam Calendar</h1>
+<p>SSC • Railway • Important Exam Dates</p>
+</header>
+<main>
+<a class="back" href="index.html">← Back to Home</a>
+<div class="card">
+<h2 class="title">Choose Exam Calendar</h2>
+<p class="sub">Select an exam category to view its calendar.</p>
+<div class="grid">
+<a class="exam" href="ssc-exam-calendar.html">
+<div class="logoBox"><img src="ssc-logo.jpg" alt="Staff Selection Commission Logo"></div>
+<h2>1) SSC Exam Calendar</h2>
+<p>Staff Selection Commission examinations and important dates.</p>
+<span class="btn">📅 &nbsp; View SSC Calendar →</span>
+</a>
+<a class="exam" href="railway-exam-calendar.html">
+<div class="logoBox"><img src="railway-logo.jpg" alt="Indian Railways Logo"></div>
+<h2>2) Railway Exam Calendar</h2>
+<p>Railway recruitment examinations and important dates.</p>
+<span class="btn">📅 &nbsp; View Railway Calendar →</span>
+</a>
+</div>
+<div class="note">💡 SSC এবং Railway-এর calendar এখান থেকে দেখে তোমার প্রস্তুতি আরও ভালোভাবে পরিকল্পনা করো।</div>
+</div>
+</main>
+<footer>
+<p>© 2026 Angshu Math Zone. All Rights Reserved.</p>
+</footer>
+</body>
+</html>
