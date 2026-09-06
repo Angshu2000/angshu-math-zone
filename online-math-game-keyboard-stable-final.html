@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Online Math Battle | Angshu Math Zone</title>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#eef4ff,#fff7ed,#f5f3ff);color:#172033}
+header{background:linear-gradient(135deg,#2563eb,#7c3aed,#db2777);color:#fff;text-align:center;padding:28px 12px}
+header h1{margin:0 0 7px;font-size:30px}header p{margin:0;font-size:15px}
+main{max-width:900px;margin:auto;padding:15px 9px 35px}.back{display:inline-block;color:#2563eb;text-decoration:none;font-weight:700;font-size:17px;margin-bottom:12px}
+.card{background:#fff;border-radius:22px;padding:18px;box-shadow:0 7px 25px #00000012;border:1px solid #e5e7eb;margin-bottom:14px}
+h2{text-align:center;color:#173b78;margin:2px 0 16px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-weight:800;color:#334155;margin:10px 0 6px}select,input{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font-size:15px;background:#fff}
+button{border:0;border-radius:10px;padding:13px;font-size:16px;font-weight:800;cursor:pointer;width:100%;margin-top:10px}
+.primary{background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff}.orange{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff}.green{background:linear-gradient(135deg,#16a34a,#059669);color:#fff}
+.status{text-align:center;color:#2563eb;font-weight:700;min-height:24px;margin:10px 0}
+.panel{display:none}.code{text-align:center;font-size:31px;letter-spacing:7px;font-weight:900;color:#173b78;margin:8px}
+#qr{width:max-content;margin:10px auto;padding:10px;background:#fff;border-radius:10px}
+.players{display:grid;grid-template-columns:1fr 1fr;gap:10px}.player{text-align:center;border:1px solid #dbe3ef;border-radius:12px;padding:12px;background:#f8fafc}.player b{display:block;font-size:20px;color:#173b78;margin-top:5px}
+.battle{display:none}.scores{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{text-align:center;border:1px solid #dbe3ef;border-radius:10px;padding:9px;background:#fff}.stat small{display:block;color:#64748b}.stat b{font-size:21px;color:#173b78}
+.question{background:#eef6ff;border-radius:14px;text-align:center;font-size:32px;font-weight:900;color:#173b78;padding:25px 10px;margin:14px 0}
+.answer{font-size:22px;text-align:center}.result{text-align:center;font-size:18px;font-weight:800;min-height:26px;margin:10px 0}
+.winner{text-align:center;padding:18px;border-radius:14px;background:#ecfdf5;border:1px solid #86efac;color:#166534;font-size:23px;font-weight:900}
+@media(max-width:600px){header h1{font-size:25px}.row{grid-template-columns:1fr}.question{font-size:28px}.scores{grid-template-columns:repeat(3,1fr)}.stat{padding:7px}.stat b{font-size:18px}.code{font-size:27px}}
+
+/* Stable mobile keyboard/input behavior */
+.answer{
+  -webkit-appearance:none;
+  appearance:none;
+  width:100%;
+  min-height:58px;
+  font-size:22px;
+  line-height:1.2;
+  padding:14px 16px;
+  border:1px solid #d7dee8;
+  border-radius:12px;
+  outline:none;
+  box-sizing:border-box;
+}
+.answer:focus{
+  border-color:#2563eb;
+  box-shadow:0 0 0 3px rgba(37,99,235,.12);
+}
+@media(max-width:600px){
+  .answer{
+    min-height:56px;
+    font-size:21px;
+    padding:13px 14px;
+  }
+}
+
+</style>
+</head>
+<body>
+<header><h1>🌐 Online Math Battle</h1><p>👥 Two Friends • ⏱️ 240 Seconds • 🏆 Highest Score Wins</p></header>
+<main>
+<a class="back" href="math-game.html">← Back to Math Game</a>
+
+<section class="card" id="setupCard">
+<h2>🎮 Create or Join Battle</h2>
+<div style="background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;padding:11px;border-radius:10px;text-align:center;font-size:13px;margin-bottom:10px">📲 Friend scans the QR → Type & Difficulty automatically selected → Game joins automatically.</div>
+<div class="row">
+<div><label>Calculation Type</label><select id="type">
+<option value="addition">➕ Addition</option><option value="subtraction">➖ Subtraction</option><option value="multiplication">✖️ Multiplication</option><option value="division">➗ Division</option><option value="mixed">🔀 Mixed</option><option value="square">² Square</option><option value="cube">³ Cube</option><option value="sqrt">√ Square Root</option><option value="cbrt">∛ Cube Root</option>
+</select></div>
+<div><label>Difficulty</label><select id="level"><option value="easy">🟢 Easy</option><option value="medium">🟡 Medium</option><option value="hard">🔴 Hard</option></select></div>
+</div>
+<label>Your Name</label><input id="name" maxlength="20" placeholder="Enter your name">
+<button class="primary" id="createBtn">🎮 Create Battle</button>
+<button class="orange" id="joinShowBtn">🔑 Join with Keyword</button>
+<div id="joinBox" style="display:none"><label>6-character Keyword</label><input id="joinCode" maxlength="6" placeholder="ABC123" style="text-transform:uppercase"><button class="green" id="joinBtn">Join Battle</button></div>
+<div class="status" id="status"></div>
+</section>
+
+<section class="card panel" id="inviteCard">
+<h2>📲 Invite Your Friend</h2>
+<div class="code" id="roomCode">------</div>
+<div id="qr"></div>
+<div class="status">QR Code স্ক্যান করুন অথবা উপরের Keyword বন্ধুকে দিন।</div>
+<div class="players"><div class="player">👤 You<b id="hostName">Waiting</b></div><div class="player">👥 Friend<b id="guestName">Waiting...</b></div></div>
+<button class="green" id="startBtn" style="display:none">▶ Start Battle</button>
+</section>
+
+<section class="card battle" id="battleCard">
+<h2>⚡ Math Battle</h2>
+<div class="scores"><div class="stat"><small>⏱️ Time</small><b id="time">240</b></div><div class="stat"><small>🏆 You</small><b id="myScore">0</b></div><div class="stat"><small>🥇 Friend</small><b id="friendScore">0</b></div></div>
+<div class="question" id="question">Get Ready!</div>
+<input class="answer" id="answer" type="number" inputmode="numeric" placeholder="Your answer" disabled>
+<button class="primary" id="submitBtn" disabled>Submit Answer</button>
+<div class="result" id="result"></div>
+</section>
+
+<section class="card panel" id="finishCard"><div class="winner" id="winner"></div><button class="primary" onclick="location.href='math-game.html'">← Back to Math Game</button></section>
+</main>
+
+<script>
+const qs = new URLSearchParams(location.search);
+const $ = id => document.getElementById(id);
+
+if(qs.get("type")) $("type").value = qs.get("type");
+if(qs.get("level")) $("level").value = qs.get("level");
+
+let peer=null, conn=null, isHost=false, code="";
+let timer=null, endAt=0, running=false;
+let myScore=0, friendScore=0;
+let currentQid=0, currentQuestion=null, answered=false;
+let lastQuestionText="";
+let reconnectTimer=null;
+
+/* Host keeps every question so the two players may be on different questions. */
+const rounds = {};
+let hostCurrentQid=0;
+let guestCurrentQid=0;
+
+function status(t){ if($("status")) $("status").textContent=t; }
+function makeCode(){ return Math.random().toString(36).slice(2,8).toUpperCase(); }
+function rnd(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
+
+function makeQ(t,l){
+  let a,b,n,ans,q;
+  if(t==="addition"){
+    a=rnd(1,l==="easy"?20:l==="medium"?100:500);
+    b=rnd(1,l==="easy"?20:l==="medium"?100:500);
+    ans=a+b; q=`${a} + ${b} = ?`;
+  }else if(t==="subtraction"){
+    a=rnd(10,l==="easy"?50:l==="medium"?200:1000);
+    b=rnd(1,a); ans=a-b; q=`${a} − ${b} = ?`;
+  }else if(t==="multiplication"){
+    a=rnd(1,l==="easy"?10:l==="medium"?30:60);
+    b=rnd(1,l==="easy"?10:l==="medium"?30:60);
+    ans=a*b; q=`${a} × ${b} = ?`;
+  }else if(t==="division"){
+    b=rnd(2,l==="easy"?10:l==="medium"?20:40);
+    ans=rnd(1,l==="easy"?10:l==="medium"?20:50);
+    a=b*ans; q=`${a} ÷ ${b} = ?`;
+  }else if(t==="square"){
+    n=rnd(l==="easy"?1:l==="medium"?10:20,l==="easy"?10:l==="medium"?20:40);
+    ans=n*n; q=`${n}² = ?`;
+  }else if(t==="cube"){
+    n=rnd(l==="easy"?1:l==="medium"?5:10,l==="easy"?5:l==="medium"?10:20);
+    ans=n*n*n; q=`${n}³ = ?`;
+  }else if(t==="sqrt"){
+    n=rnd(l==="easy"?1:l==="medium"?20:60,l==="easy"?20:l==="medium"?60:120);
+    ans=n; q=`√${n*n} = ?`;
+  }else if(t==="cbrt"){
+    n=rnd(l==="easy"?1:l==="medium"?11:21,l==="easy"?10:l==="medium"?20:30);
+    ans=n; q=`∛${n*n*n} = ?`;
+  }else{
+    a=rnd(1,30); b=rnd(1,20); n=rnd(1,10);
+    ans=a+b*n; q=`${a} + ${b} × ${n} = ?`;
+  }
+  return {q,ans};
+}
+
+function makeUniqueQ(){
+  let q;
+  for(let i=0;i<30;i++){
+    q=makeQ($("type").value,$("level").value);
+    if(q.q!==lastQuestionText) break;
+  }
+  lastQuestionText=q.q;
+  return q;
+}
+
+function send(x){
+  if(conn && conn.open) conn.send(x);
+}
+
+function syncScores(){
+  $("myScore").textContent=myScore;
+  $("friendScore").textContent=friendScore;
+}
+
+function showBattle(){
+  $("setupCard").style.display="none";
+  $("inviteCard").style.display="none";
+  $("battleCard").style.display="block";
+}
+
+function displayQuestion(id,q){
+  currentQid=id;
+  currentQuestion=q;
+  answered=false;
+  $("question").textContent=q.q;
+  $("answer").value="";
+  $("answer").disabled=false;
+  $("submitBtn").disabled=false;
+  $("result").textContent="";
+}
+
+function startClock(at){
+  clearInterval(timer);
+  endAt=at+240000;
+  running=true;
+  showBattle();
+  $("time").textContent="240";
+  timer=setInterval(()=>{
+    const left=Math.max(0,Math.ceil((endAt-Date.now())/1000));
+    $("time").textContent=left;
+    if(left<=0) finish();
+  },250);
+}
+
+function hostSendNextQuestionToHost(){
+  if(!isHost || !running) return;
+  hostCurrentQid++;
+  const q=makeUniqueQ();
+  rounds[hostCurrentQid]={q:q,first:null};
+  displayQuestion(hostCurrentQid,q);
+  send({kind:"hostQuestion",id:hostCurrentQid,q:q.q});
+}
+
+function hostSendNextQuestionToGuest(){
+  if(!isHost || !running) return;
+  guestCurrentQid++;
+  if(!rounds[guestCurrentQid]){
+    const q=makeUniqueQ();
+    rounds[guestCurrentQid]={q:q,first:null};
+  }
+  send({kind:"guestQuestion",id:guestCurrentQid,q:rounds[guestCurrentQid].q.q});
+}
+
+function hostEvaluateAnswer(player,id,value){
+  if(!isHost || !running) return;
+
+  const r=rounds[id];
+  if(!r) return;
+
+  const correct=Number(value)===Number(r.q.ans);
+
+  /* Every submitted answer is evaluated.
+     A correct answer earns 1 point; wrong answers earn 0.
+     Each player then gets ONLY their own next question. */
+  if(correct){
+    if(player==="host") myScore++;
+    else friendScore++;
+    syncScores();
+  }
+
+  send({
+    kind:"answerResult",
+    player:player,
+    id:id,
+    correct:correct,
+    hostScore:myScore,
+    guestScore:friendScore
+  });
+
+  /* Only the player who answered moves to the next question.
+     The other player's current question is untouched. */
+  if(player==="host"){
+    hostSendNextQuestionToHost();
+  }else{
+    hostSendNextQuestionToGuest();
+  }
+}
+function finish(){
+  if(!running) return;
+  running=false;
+  clearInterval(timer);
+  $("answer").disabled=true;
+  $("submitBtn").disabled=true;
+
+  send({kind:"final",hostScore:myScore,guestScore:friendScore});
+
+  $("battleCard").style.display="none";
+  $("finishCard").style.display="block";
+
+  const text=myScore>friendScore
+    ?"🏆 YOU WIN!"
+    :myScore<friendScore
+      ?"🎉 FRIEND WINS!"
+      :"🤝 IT'S A DRAW!";
+
+  $("winner").innerHTML=text+
+    "<br><small style='font-size:16px'>Your Score: "+myScore+
+    " &nbsp; | &nbsp; Friend: "+friendScore+"</small>";
+}
+
+function setupConnection(name){
+  conn.on("open",()=>{
+    status("🟢 Connected");
+    send({kind:"hello",name,type:$("type").value,level:$("level").value});
+  });
+
+  conn.on("data",handleData);
+
+  conn.on("close",()=>{
+    if(running){
+      status("🟠 Connection lost — trying to reconnect…");
+      if(!isHost) tryReconnect(name);
+    }else{
+      status("Connection closed.");
+    }
+  });
+
+  conn.on("error",()=>{
+    if(!running) status("Connection error.");
+  });
+}
+
+function tryReconnect(name){
+  clearTimeout(reconnectTimer);
+  reconnectTimer=setTimeout(()=>{
+    if(!isHost && peer && code){
+      try{
+        conn=peer.connect("AMZ-"+code,{reliable:true});
+        setupConnection(name);
+      }catch(e){}
+    }
+  },1200);
+}
+
+function handleData(d){
+  if(d.kind==="hello"){
+    $("guestName").textContent=d.name||"Friend";
+
+    if(!isHost){
+      $("type").value=d.type;
+      $("level").value=d.level;
+      status("🟢 Connected to friend's Battle.");
+    }else{
+      $("startBtn").style.display="block";
+      status("🟢 Friend joined. Ready to start!");
+    }
+    return;
+  }
+
+  if(d.kind==="start"){
+    myScore=0;
+    friendScore=0;
+    syncScores();
+    startClock(d.at);
+
+    if(!isHost){
+      $("question").textContent="Get Ready…";
+      $("result").textContent="";
+    }
+    return;
+  }
+
+  /* Guest receives ONLY its own next question.
+     Host does NOT overwrite the guest's screen when Host answers first. */
+  if(d.kind==="guestQuestion"){
+    if(isHost) return;
+    displayQuestion(d.id,{q:d.q,ans:null});
+    return;
+  }
+
+  /* Host receives its own question locally through displayQuestion(). */
+  if(d.kind==="hostQuestion"){
+    return;
+  }
+
+  if(d.kind==="answerResult"){
+    if(!isHost){
+      friendScore=d.hostScore;
+      myScore=d.guestScore;
+      syncScores();
+
+      if(d.player==="guest" && d.id===currentQid){
+        $("result").textContent=d.correct
+          ?"✅ Correct! +1"
+          :"❌ Wrong answer!";
+      }
+    }
+    return;
+  }
+
+  if(d.kind==="final"){
+    if(!isHost){
+      myScore=d.guestScore;
+      friendScore=d.hostScore;
+      syncScores();
+      finish();
+    }
+    return;
+  }
+
+  if(d.kind==="ping"){
+    send({kind:"pong"});
+  }
+}
+
+$("createBtn").onclick=()=>{
+  const name=$("name").value.trim()||"Player 1";
+
+  isHost=true;
+  code=makeCode();
+
+  $("hostName").textContent=name;
+  $("roomCode").textContent=code;
+  $("inviteCard").style.display="block";
+  $("createBtn").disabled=true;
+  $("joinShowBtn").style.display="none";
+
+  $("qr").innerHTML="";
+
+  const link=location.href.split("?")[0]+"?join="+code+
+    "&type="+encodeURIComponent($("type").value)+
+    "&level="+encodeURIComponent($("level").value);
+
+  new QRCode($("qr"),{text:link,width:190,height:190});
+
+  peer=new Peer("AMZ-"+code);
+
+  peer.on("open",()=>status("🟢 Battle ready. Share the QR Code."));
+
+  peer.on("connection",c=>{
+    if(conn && conn.open) conn.close();
+    conn=c;
+    setupConnection(name);
+  });
+
+  peer.on("error",()=>status("Connection error. Create a new Battle."));
+};
+
+$("startBtn").onclick=()=>{
+  if(!conn || !conn.open) return;
+
+  $("startBtn").disabled=true;
+
+  myScore=0;
+  friendScore=0;
+  hostCurrentQid=0;
+  guestCurrentQid=0;
+
+  for(const k in rounds) delete rounds[k];
+
+  syncScores();
+
+  const at=Date.now()+1200;
+  send({kind:"start",at});
+  startClock(at);
+
+  setTimeout(()=>{
+    if(running){
+      /* Create the first shared question. */
+      const q=makeUniqueQ();
+      rounds[1]={q:q,first:null};
+      hostCurrentQid=1;
+      guestCurrentQid=1;
+
+      displayQuestion(1,q);
+      send({kind:"guestQuestion",id:1,q:q.q});
+    }
+  },1250);
+};
+
+$("joinShowBtn").onclick=()=>{
+  $("joinBox").style.display="block";
+};
+
+function joinBattle(c,name){
+  isHost=false;
+  code=c;
+
+  peer=new Peer();
+
+  peer.on("open",()=>{
+    conn=peer.connect("AMZ-"+code,{reliable:true});
+    setupConnection(name);
+  });
+
+  peer.on("error",()=>{
+    status("❌ Battle পাওয়া যায়নি। Host-এর QR/Keyword আবার চেষ্টা করুন।");
+  });
+}
+
+$("joinBtn").onclick=()=>{
+  const c=$("joinCode").value.trim().toUpperCase();
+  const name=$("name").value.trim()||"Player 2";
+
+  if(c.length!==6){
+    status("6-character Keyword দিন।");
+    return;
+  }
+
+  joinBattle(c,name);
+};
+
+$("submitBtn").onclick=()=>{
+  if(!running || answered || $("answer").value==="") return;
+
+  answered=true;
+  const val=Number($("answer").value);
+
+  if(isHost){
+    /* Host may already be on a newer question.
+       This answer belongs to the question currently visible on Host. */
+    $("submitBtn").disabled=true;
+    $("answer").disabled=true;
+    const localQ=rounds[currentQid];
+    if(localQ){
+      $("result").textContent =
+        Number(val)===Number(localQ.q.ans) ? "✅ Correct! +1" : "❌ Wrong answer!";
+    }
+    hostEvaluateAnswer("host",currentQid,val);
+  }else{
+    $("submitBtn").disabled=true;
+    $("result").textContent="⏳ Checking answer…";
+    send({kind:"guestAnswer",id:currentQid,answer:val});
+  }
+};
+
+$("answer").addEventListener("keydown",e=>{
+  if(e.key==="Enter") $("submitBtn").click();
+});
+
+/* Host receives Guest's answer for Guest's own visible question.
+   Guest may be one or more questions behind Host; that is intentional. */
+const originalHandleData=handleData;
+handleData=function(d){
+  if(d.kind==="guestAnswer" && isHost){
+    if(!running) return;
+    hostEvaluateAnswer("guest",Number(d.id),d.answer);
+    return;
+  }
+  originalHandleData(d);
+};
+
+setInterval(()=>{
+  if(conn && conn.open) send({kind:"ping"});
+},5000);
+
+/* QR scan: type + level + keyword are carried in the QR URL.
+   Player 2 does not need to re-enter them. */
+if(qs.get("join")){
+  const autoCode=qs.get("join").trim().toUpperCase();
+
+  if(qs.get("type")) $("type").value=qs.get("type");
+  if(qs.get("level")) $("level").value=qs.get("level");
+
+  $("setupCard").style.display="block";
+  $("joinBox").style.display="none";
+  $("createBtn").style.display="none";
+  $("joinShowBtn").style.display="none";
+  $("type").disabled=true;
+  $("level").disabled=true;
+
+  status("📲 QR detected — Battle automatically connecting…");
+
+  const name=$("name").value.trim()||"Player 2";
+  setTimeout(()=>joinBattle(autoCode,name),250);
+}
+</script>
+</body>
+</html>
